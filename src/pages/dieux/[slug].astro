@@ -1,25 +1,93 @@
 ---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('dieux');
-  return entries.map((entry) => ({
+  const all = await getCollection('dieux');
+  return all.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
+
 const { entry } = Astro.props;
-const { title, image, description } = entry.data;
+const { title, description, image, role, parents, domaines, symboles } = entry.data;
 const { Content } = await entry.render();
 ---
+
 <html lang="fr">
-  <body class="max-w-3xl mx-auto p-6">
-    <a href="/dieux/" class="text-sm underline">← Retour</a>
-    <h1 class="text-4xl font-bold mt-2">{title}</h1>
-    {image && <img src={image} alt={title} class="mt-4 rounded-xl" />}
-    <article class="prose mt-6">
+<head>
+  <meta charset="utf-8" />
+  <title>{title} | Mythoskolis</title>
+</head>
+
+<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+  <Header />
+
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-12">
+    <a href="/dieux/" class="text-sm underline mb-4 inline-block">← Retour</a>
+
+    <h1 class="text-4xl font-bold mb-4">{title}</h1>
+    {role && <p class="text-xl text-gray-600 mb-6">{role}</p>}
+
+    {entry.data.video ? (
+      <video 
+        class="w-full md:w-[70%] mx-auto rounded-2xl mb-8 shadow"
+        controls 
+        autoplay 
+        muted 
+        loop
+      >
+        <source src={entry.data.video} type="video/mp4" />
+        Votre navigateur ne supporte pas la vidéo HTML5.
+      </video>
+    ) : (
+      image && (
+        <img 
+          src={image} 
+          alt={title} 
+          class="w-full rounded-2xl mb-8 shadow"
+        />
+      )
+    )}
+
+
+    <section class="prose prose-gray max-w-none">
       <Content />
-    </article>
-  </body>
+    </section>
+
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+      {parents && (
+        <div>
+          <h3 class="font-semibold mb-2">Parents</h3>
+          <ul class="list-disc ml-4">
+            {parents.map((p) => <li>{p}</li>)}
+          </ul>
+        </div>
+      )}
+
+      {domaines && (
+        <div>
+          <h3 class="font-semibold mb-2">Domaines</h3>
+          <ul class="list-disc ml-4">
+            {domaines.map((d) => <li>{d}</li>)}
+          </ul>
+        </div>
+      )}
+
+      {symboles && (
+        <div>
+          <h3 class="font-semibold mb-2">Symboles</h3>
+          <ul class="list-disc ml-4">
+            {symboles.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+</body>
 </html>
