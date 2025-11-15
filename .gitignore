@@ -3,3 +3,4 @@ dist/
 .astro/
 .netlify/
 .env
+codex-instructions.md

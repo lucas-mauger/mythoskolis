@@ -36,10 +36,13 @@ const { Content } = await entry.render();
     {entry.data.video ? (
       <video 
         class="w-full md:w-[70%] mx-auto rounded-2xl mb-8 shadow"
-        controls 
         autoplay 
         muted 
         loop
+        playsinline
+        controlsList="nodownload nofullscreen noplaybackrate"
+        disablePictureInPicture
+        oncontextmenu="event.preventDefault()"
       >
         <source src={entry.data.video} type="video/mp4" />
         Votre navigateur ne supporte pas la vidéo HTML5.

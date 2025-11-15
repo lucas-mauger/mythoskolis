@@ -22,5 +22,28 @@ collections:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Rôle / épithète", name: "role", widget: "string", required: false }
+      - { label: "Image principale", name: "image", widget: "image", allow_multiple: false }
+      - { label: "Vidéo", name: "video", widget: "file", required: false, allow_multiple: false }
+      - { label: "Image Open Graph", name: "og_image", widget: "image", required: false, allow_multiple: false }
+      - { label: "Parents", name: "parents", widget: "list", required: false, field: { label: "Parent", name: "parent", widget: "string" } }
+      - { label: "Domaines", name: "domaines", widget: "list", required: false, field: { label: "Domaine", name: "domaine", widget: "string" } }
+      - { label: "Symboles", name: "symboles", widget: "list", required: false, field: { label: "Symbole", name: "symbole", widget: "string" } }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "ressources"
+    label: "Ressources"
+    folder: "content/ressources"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: true
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description courte", name: "description", widget: "text" }
+      - { label: "Image principale", name: "image", widget: "image", allow_multiple: false }
+      - { label: "Image Open Graph", name: "og_image", widget: "image", required: false, allow_multiple: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
