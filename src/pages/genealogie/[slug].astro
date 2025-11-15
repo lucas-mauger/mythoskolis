@@ -1,0 +1,83 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EgoGraph from '../../components/EgoGraph.astro';
+import '../../styles/global.css';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { getEgoGraph, getGraphDisplayData, getEntityBySlug } from '../../lib/genealogie';
+
+interface Props {
+  entry: CollectionEntry<'dieux'>;
+}
+
+export async function getStaticPaths() {
+  const dieux = await getCollection('dieux');
+
+  return dieux.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as Props;
+const yamlEntity = getEntityBySlug(entry.slug);
+const egoGraph = getEgoGraph(entry.slug);
+const displayData = getGraphDisplayData(entry.slug);
+const hasData = Boolean(egoGraph && displayData);
+const entityName = yamlEntity?.name ?? entry.data.title;
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Généalogie de {entityName} | Mythoskolis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+    <Header />
+
+    <main class="flex-1 max-w-4xl mx-auto px-4 py-12 space-y-6">
+      <div class="flex flex-wrap gap-3 text-sm">
+        <a href="/" class="underline">← Accueil</a>
+        <a href={`/dieux/${entry.slug}/`} class="underline text-indigo-600 hover:text-indigo-700">
+          Voir la fiche dieu
+        </a>
+      </div>
+
+      <div>
+        <p class="text-sm uppercase tracking-wide text-gray-500">Généalogie</p>
+        <h1 class="text-4xl font-bold">{entityName}</h1>
+      </div>
+
+      {hasData ? (
+        <>
+          <EgoGraph {...displayData!} />
+
+          <p class="text-gray-600 text-sm">
+            Bloc de debug : on garde la représentation JSON pour suivre les évolutions du graphe pendant le
+            développement du composant.
+          </p>
+
+          <pre class="bg-white border border-gray-200 rounded-xl p-6 overflow-x-auto text-xs shadow-sm">
+{JSON.stringify(egoGraph, null, 2)}
+          </pre>
+        </>
+      ) : (
+        <div class="rounded-2xl border border-dashed border-indigo-300 bg-indigo-50/60 p-6 text-indigo-900">
+          <h2 class="text-2xl font-semibold mb-2">Cartographie en cours</h2>
+          <p class="text-sm leading-relaxed">
+            Les données généalogiques de <strong>{entityName}</strong> sont en train d’être consolidées. Cette page sera
+            mise à jour dès que les relations familiales seront vérifiées et sourcées.
+          </p>
+          <p class="text-xs mt-4 text-indigo-700">
+            Tu peux suivre la roadmap dans `docs/genealogie` pour voir quelles branches sont en cours d’ajout.
+          </p>
+        </div>
+      )}
+    </main>
+
+    <Footer />
+  </body>
+</html>

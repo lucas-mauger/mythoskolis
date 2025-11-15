@@ -1,0 +1,158 @@
+entities:
+  - id: cronos
+    name: Cronos
+    slug: cronos
+    culture: grecque
+  - id: rhea
+    name: Rhéa
+    slug: rhea
+    culture: grecque
+  - id: zeus
+    name: Zeus
+    slug: zeus
+    culture: grecque
+  - id: hera
+    name: Héra
+    slug: hera
+    culture: grecque
+  - id: metis
+    name: Métis
+    slug: metis
+    culture: grecque
+  - id: athena
+    name: Athéna
+    slug: athena
+    culture: grecque
+  - id: leto
+    name: Léto
+    slug: leto
+    culture: grecque
+  - id: apollon
+    name: Apollon
+    slug: apollon
+    culture: grecque
+  - id: artemis
+    name: Artémis
+    slug: artemis
+    culture: grecque
+  - id: ares
+    name: Arès
+    slug: ares
+    culture: grecque
+  - id: hephaistos
+    name: Héphaïstos
+    slug: hephaistos
+    culture: grecque
+
+relations:
+  - source_id: cronos
+    target_id: zeus
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: rhea
+    target_id: zeus
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: zeus
+    target_id: hera
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+  - source_id: zeus
+    target_id: hera
+    type: consort
+    source_texts:
+      - author: Pausanias
+        work: Description de la Grèce
+        note: "Livre II"
+  - source_id: zeus
+    target_id: metis
+    type: consort
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.886-900"
+  - source_id: zeus
+    target_id: athena
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.886-900"
+  - source_id: metis
+    target_id: athena
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.886-900"
+  - source_id: zeus
+    target_id: leto
+    type: consort
+    source_texts:
+      - author: Callimaque
+        work: Hymne à Délos
+  - source_id: leto
+    target_id: apollon
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.918-920"
+  - source_id: zeus
+    target_id: apollon
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.918-920"
+  - source_id: leto
+    target_id: artemis
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.918-920"
+  - source_id: zeus
+    target_id: artemis
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.918-920"
+  - source_id: hera
+    target_id: ares
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+  - source_id: zeus
+    target_id: ares
+    type: parent
+    source_texts:
+      - author: Homère
+        work: Iliade
+        note: "V, 890-896"
+  - source_id: hera
+    target_id: hephaistos
+    type: parent
+    variant: "Naissance par Héra seule"
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.924-926"
+  - source_id: zeus
+    target_id: hephaistos
+    type: parent
+    variant: "Tradition homérique"
+    source_texts:
+      - author: Homère
+        work: Iliade
+        note: "I, 571-600"
