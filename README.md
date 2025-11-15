@@ -77,9 +77,13 @@ mythoskolis/
 ├── public/                 # Fichiers statiques (images, vidéos, assets)
 │   └── admin/              # Interface Decap CMS
 │
+├── data/
+│   └── genealogie.yaml     # Source unique des relations familiales
+│
 ├── src/
-│   ├── components/         # Composants Astro réutilisables
+│   ├── components/         # Composants Astro réutilisables (EgoGraph, Header, …)
 │   ├── content/            # Fiches (dieux, ressources...) en Markdown
+│   ├── lib/                # Utilitaires (lecture du YAML généalogique)
 │   ├── pages/              # Pages Astro => routes du site
 │   └── styles/             # Styles globaux (Tailwind)
 │
@@ -105,10 +109,11 @@ Le projet suit une organisation simple :
 
 ## 📌 7. État actuel du projet
 
-- Mise en place de l’environnement Astro sur Zorin Linux  
-- Installation Prettier + ESLint (formatage + lint)  
-- Normalisation du workflow Git  
-- Début de la roadmap technique (CMS, données généalogiques, SEO…)
+- Base Astro + Tailwind opérationnelle (pages d’accueil, dieux, ressources, à propos).  
+- Decap CMS configuré (`public/admin/config.yml`) pour éditer les fiches dieux/ressources.  
+- Données généalogiques centralisées dans `data/genealogie.yaml`, lues via `src/lib/genealogie.ts`.  
+- Composant `EgoGraph.astro` + pages `/genealogie/[slug]` permettant de visualiser les relations (ou d’afficher un panneau “cartographie en cours” si les données manquent).  
+- README, docs et workflow Git alignés (travail sur branches `feature/*` + PR vers `main`).
 
 ---
 
