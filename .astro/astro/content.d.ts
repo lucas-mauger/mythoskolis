@@ -218,6 +218,13 @@ declare module 'astro:content' {
   collection: "dieux";
   data: any
 } & { render(): Render[".md"] };
+"hestia.md": {
+	id: "hestia.md";
+  slug: "hestia";
+  body: string;
+  collection: "dieux";
+  data: any
+} & { render(): Render[".md"] };
 "persephone.md": {
 	id: "persephone.md";
   slug: "persephone";

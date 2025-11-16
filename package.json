@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/generate-genealogie-json.mjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/generate-genealogie-json.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "format": "prettier --write ."

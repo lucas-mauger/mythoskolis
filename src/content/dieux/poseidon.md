@@ -2,7 +2,7 @@
 title: "Poséidon"
 role: "Dieu des mers, des tremblements de terre et des chevaux"
 description: "Frère de Zeus et souverain des mers, Poséidon règne sur les océans et exerce un pouvoir redouté sur les forces naturelles."
-video: "/images/poseidon.mp4"
+video: "/videos/poseidon.mp4"
 parents:
   - "Cronos"
   - "Rhéa"

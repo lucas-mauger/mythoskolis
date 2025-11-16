@@ -2,7 +2,7 @@
 title: "Athéna"
 role: "Déesse de la sagesse, de la stratégie guerrière et des artisans"
 description: "Née de la tête de Zeus, Athéna incarne l’intelligence, la réflexion, la maîtrise technique et la guerre disciplinée."
-video: "/images/athena.mp4"
+video: "/videos/athena.mp4"
 parents:
   - "Zeus"
 domaines:

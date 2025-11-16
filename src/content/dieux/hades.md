@@ -2,7 +2,7 @@
 title: "Hadès"
 role: "Dieu des Enfers — Gardien des morts et souverain du royaume souterrain"
 description: "Frère de Zeus et Poséidon, Hadès règne sur le monde des morts. Froid, impartial et incorruptible, il incarne l’ordre inflexible du destin."
-video: "/images/hades.mp4"
+video: "/videos/hades.mp4"
 parents:
   - "Cronos"
   - "Rhéa"

@@ -1,11 +1,11 @@
 ---
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import EgoGraph from '../../components/EgoGraph.astro';
+import EgoGraphInteractive from '../../components/EgoGraphInteractive.astro';
 import '../../styles/global.css';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
-import { getEgoGraph, getGraphDisplayData, getEntityBySlug } from '../../lib/genealogie';
+import { getEgoGraph, getEntityBySlug } from '../../lib/genealogie';
 
 interface Props {
   entry: CollectionEntry<'dieux'>;
@@ -23,8 +23,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props as Props;
 const yamlEntity = getEntityBySlug(entry.slug);
 const egoGraph = getEgoGraph(entry.slug);
-const displayData = getGraphDisplayData(entry.slug);
-const hasData = Boolean(egoGraph && displayData);
+const hasData = Boolean(egoGraph);
 const entityName = yamlEntity?.name ?? entry.data.title;
 ---
 
@@ -52,18 +51,7 @@ const entityName = yamlEntity?.name ?? entry.data.title;
       </div>
 
       {hasData ? (
-        <>
-          <EgoGraph {...displayData!} />
-
-          <p class="text-gray-600 text-sm">
-            Bloc de debug : on garde la représentation JSON pour suivre les évolutions du graphe pendant le
-            développement du composant.
-          </p>
-
-          <pre class="bg-white border border-gray-200 rounded-xl p-6 overflow-x-auto text-xs shadow-sm">
-{JSON.stringify(egoGraph, null, 2)}
-          </pre>
-        </>
+        <EgoGraphInteractive initialSlug={entry.slug} />
       ) : (
         <div class="rounded-2xl border border-dashed border-indigo-300 bg-indigo-50/60 p-6 text-indigo-900">
           <h2 class="text-2xl font-semibold mb-2">Cartographie en cours</h2>

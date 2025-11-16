@@ -2,7 +2,7 @@
 title: "Héra"
 role: "Reine des dieux — Déesse du mariage, des femmes et de la famille"
 description: "Épouse de Zeus et protectrice des unions légitimes, Héra incarne l’autorité, la fidélité institutionnelle et la souveraineté féminine."
-video: "/images/hera.mp4"
+video: "/videos/hera.mp4"
 parents:
   - "Cronos"
   - "Rhéa"

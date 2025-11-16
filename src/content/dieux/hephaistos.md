@@ -2,7 +2,7 @@
 title: "Héphaïstos"
 role: "Dieu du feu, des forges, des métaux et de l’artisanat"
 description: "Maître artisan de l’Olympe, Héphaïstos façonne les armes et objets divins, alliant technique, ingéniosité et puissance du feu."
-video: "/images/hephaistos.mp4"
+video: "/videos/hephaistos.mp4"
 parents:
   - "Héra"         # version la plus connue : naissance parthénogénétique
 domaines:

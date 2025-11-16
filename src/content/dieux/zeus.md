@@ -2,7 +2,7 @@
 title: "Zeus"
 role: "Roi des dieux — Maître du ciel, du tonnerre et de la foudre"
 description: "Souverain de l’Olympe, arbitre des conflits divins et humains, père de nombreux héros et divinités."
-video: "/images/zeus.mp4"
+video: "/videos/zeus.mp4"
 parents:
   - "Cronos"
   - "Rhéa"

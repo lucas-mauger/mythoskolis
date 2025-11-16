@@ -2,7 +2,7 @@
 title: "Artémis"
 role: "Déesse de la chasse et de la nature sauvage"
 description: "Déesse farouche, protectrice des jeunes filles, associée à la lune et aux espaces vierges."
-video: "/images/artemis.mp4"
+video: "/videos/artemis.mp4"
 parents:
   - "Zeus"
   - "Léto"

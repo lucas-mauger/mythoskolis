@@ -15,6 +15,22 @@ entities:
     name: Héra
     slug: hera
     culture: grecque
+  - id: demeter
+    name: Déméter
+    slug: demeter
+    culture: grecque
+  - id: hestia
+    name: Hestia
+    slug: hestia
+    culture: grecque
+  - id: poseidon
+    name: Poséidon
+    slug: poseidon
+    culture: grecque
+  - id: hades
+    name: Hadès
+    slug: hades
+    culture: grecque
   - id: metis
     name: Métis
     slug: metis
@@ -59,6 +75,20 @@ relations:
       - author: Hésiode
         work: Théogonie
         note: "v.453-506"
+  - source_id: cronos
+    target_id: hera
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: rhea
+    target_id: hera
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
   - source_id: zeus
     target_id: hera
     type: sibling
@@ -72,6 +102,62 @@ relations:
       - author: Pausanias
         work: Description de la Grèce
         note: "Livre II"
+  - source_id: cronos
+    target_id: demeter
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: rhea
+    target_id: demeter
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: cronos
+    target_id: hestia
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: rhea
+    target_id: hestia
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: cronos
+    target_id: poseidon
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: rhea
+    target_id: poseidon
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: cronos
+    target_id: hades
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: rhea
+    target_id: hades
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
   - source_id: zeus
     target_id: metis
     type: consort
@@ -140,6 +226,104 @@ relations:
       - author: Homère
         work: Iliade
         note: "V, 890-896"
+  - source_id: hestia
+    target_id: zeus
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hestia
+    target_id: hera
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hestia
+    target_id: demeter
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hestia
+    target_id: hades
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hestia
+    target_id: poseidon
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: demeter
+    target_id: hera
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: demeter
+    target_id: hades
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: demeter
+    target_id: poseidon
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: demeter
+    target_id: zeus
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hera
+    target_id: hades
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hera
+    target_id: poseidon
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hades
+    target_id: poseidon
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: hades
+    target_id: zeus
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
+  - source_id: poseidon
+    target_id: zeus
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.453-506"
   - source_id: hera
     target_id: hephaistos
     type: parent
@@ -156,3 +340,10 @@ relations:
       - author: Homère
         work: Iliade
         note: "I, 571-600"
+  - source_id: apollon
+    target_id: artemis
+    type: sibling
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: "v.918-920"

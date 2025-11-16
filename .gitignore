@@ -4,3 +4,4 @@ dist/
 .netlify/
 .env
 codex-instructions.md
+public/data/genealogie.json

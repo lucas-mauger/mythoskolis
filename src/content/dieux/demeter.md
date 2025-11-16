@@ -2,7 +2,7 @@
 title: "Déméter"
 role: "Déesse des moissons, de la fertilité et du cycle des saisons"
 description: "Protectrice des cultures et mère de Perséphone, Déméter incarne la terre nourricière et l’alternance des saisons."
-video: "/images/demeter.mp4"
+video: "/videos/demeter.mp4"
 parents:
   - "Cronos"
   - "Rhéa"

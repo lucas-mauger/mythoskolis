@@ -2,7 +2,7 @@
 title: "Perséphone"
 role: "Reine des Enfers — Déesse du renouveau et des cycles saisonniers"
 description: "Fille de Déméter et compagne d’Hadès, Perséphone règne sur les Enfers et incarne l’alternance entre mort, renaissance et cyclicité du monde naturel."
-video: "/images/persephone.mp4"
+video: "/videos/persephone.mp4"
 parents:
   - "Déméter"
   - "Zeus"

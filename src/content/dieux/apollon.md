@@ -2,7 +2,7 @@
 title: "Apollon"
 role: "Dieu de la lumière, de la musique, des arts et de la divination"
 description: "Fils de Zeus et frère jumeau d’Artémis, Apollon représente l’harmonie, l’équilibre, l’inspiration et la clarté."
-video: "/images/apollon.mp4"
+video: "/videos/apollon.mp4"
 parents:
   - "Zeus"
   - "Léto"

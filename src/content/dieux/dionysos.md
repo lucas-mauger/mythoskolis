@@ -2,7 +2,7 @@
 title: "Dionysos"
 role: "Dieu du vin, de l’ivresse sacrée, du théâtre et de la transe"
 description: "Divinité de l’extase, de la libération des contraintes et des forces vitales, Dionysos incarne la joie débridée autant que la folie."
-video: "/images/dionysos.mp4"
+video: "/videos/dionysos.mp4"
 parents:
   - "Zeus"
   - "Sémélé"
