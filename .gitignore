@@ -4,4 +4,7 @@ dist/
 .netlify/
 .env
 codex-instructions.md
+<<<<<<< HEAD
 public/data/genealogie.json
+=======
+>>>>>>> origin/main
