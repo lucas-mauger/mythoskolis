@@ -59,6 +59,30 @@ entities:
     name: Héphaïstos
     slug: hephaistos
     culture: grecque
+  - id: hermes
+    name: Hermès
+    slug: hermes
+    culture: grecque
+  - id: dionysos
+    name: Dionysos
+    slug: dionysos
+    culture: grecque
+  - id: persephone
+    name: Perséphone
+    slug: persephone
+    culture: grecque
+  - id: hebe
+    name: Hébé
+    slug: hebe
+    culture: grecque
+  - id: maia
+    name: Maia
+    slug: maia
+    culture: grecque
+  - id: semele
+    name: Sémélé
+    slug: semele
+    culture: grecque
 
 relations:
   - source_id: cronos
@@ -347,3 +371,71 @@ relations:
       - author: Hésiode
         work: Théogonie
         note: "v.918-920"
+  - source_id: zeus
+    target_id: maia
+    type: consort
+    source_texts:
+      - author: Homère
+        work: Hymne homérique à Hermès
+  - source_id: maia
+    target_id: hermes
+    type: parent
+    source_texts:
+      - author: Homère
+        work: Hymne homérique à Hermès
+  - source_id: zeus
+    target_id: hermes
+    type: parent
+    source_texts:
+      - author: Homère
+        work: Hymne homérique à Hermès
+  - source_id: zeus
+    target_id: semele
+    type: consort
+    source_texts:
+      - author: Apollodore
+        work: Bibliothèque
+  - source_id: semele
+    target_id: dionysos
+    type: parent
+    source_texts:
+      - author: Euripide
+        work: Les Bacchantes
+  - source_id: zeus
+    target_id: dionysos
+    type: parent
+    source_texts:
+      - author: Euripide
+        work: Les Bacchantes
+  - source_id: zeus
+    target_id: demeter
+    type: consort
+    source_texts:
+      - author: Homère
+        work: Hymne homérique à Déméter
+  - source_id: demeter
+    target_id: persephone
+    type: parent
+    source_texts:
+      - author: Homère
+        work: Hymne homérique à Déméter
+  - source_id: zeus
+    target_id: persephone
+    type: parent
+    source_texts:
+      - author: Homère
+        work: Hymne homérique à Déméter
+  - source_id: zeus
+    target_id: hebe
+    type: parent
+    source_texts:
+      - author: Homère
+        work: Iliade
+        note: "IV, 2"
+  - source_id: hera
+    target_id: hebe
+    type: parent
+    source_texts:
+      - author: Homère
+        work: Iliade
+        note: "IV, 2"
