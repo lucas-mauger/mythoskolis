@@ -5,7 +5,8 @@ interface Props {
 
 const { initialSlug } = Astro.props as Props;
 const componentId = `ego-graph-${initialSlug}`;
-const clientScriptSrc = Astro.resolve('./ego-graph-interactive-client.ts');
+const clientModule = (await import('./ego-graph-interactive-client.ts?url')) as { default: string };
+const clientScriptSrc = clientModule.default;
 ---
 
 <section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 space-y-4">
@@ -350,4 +351,11 @@ const clientScriptSrc = Astro.resolve('./ego-graph-interactive-client.ts');
   }
 </style>
 
-<script type="module" src={clientScriptSrc} defer></script>
+<<<<<<< HEAD
+<script type="module" src={clientScriptSrc}></script>
+=======
+<script type="module" define:vars={{ componentId, initialSlug }}>
+  import { initEgoGraphInteractive } from "./ego-graph-interactive-client.ts";
+  initEgoGraphInteractive(componentId, initialSlug);
+</script>
+>>>>>>> origin/main
