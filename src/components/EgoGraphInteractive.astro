@@ -5,6 +5,8 @@ interface Props {
 
 const { initialSlug } = Astro.props as Props;
 const componentId = `ego-graph-${initialSlug}`;
+const clientModule = (await import('./ego-graph-interactive-client.ts?url')) as { default: string };
+const clientScriptSrc = clientModule.default;
 ---
 
 <section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 space-y-4">
@@ -358,6 +360,11 @@ const componentId = `ego-graph-${initialSlug}`;
     animation: ego-glow 1.6s ease-in-out infinite;
   }
 
+  .ego-node.is-animating::before {
+    opacity: 0 !important;
+    animation: none !important;
+  }
+
   .ego-node.is-related::before {
     border-color: rgba(59, 130, 246, 0.7);
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.55), 0 0 22px rgba(59, 130, 246, 0.35);
@@ -461,6 +468,10 @@ const componentId = `ego-graph-${initialSlug}`;
     display: inline-flex;
   }
 
+  .ego-node-fly {
+    box-shadow: none !important;
+  }
+
   .ego-graph-message {
     min-height: 100%;
     width: 100%;
@@ -525,7 +536,4 @@ const componentId = `ego-graph-${initialSlug}`;
   }
 </style>
 
-<script type="module" define:vars={{ componentId, initialSlug }}>
-  import { initEgoGraphInteractive } from "./ego-graph-interactive-client.ts";
-  initEgoGraphInteractive(componentId, initialSlug);
-</script>
+<script type="module" src={clientScriptSrc}></script>

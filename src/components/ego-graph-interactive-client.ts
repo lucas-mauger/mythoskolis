@@ -93,6 +93,7 @@ class EgoGraphController {
         this.selectedConsortSlug = null;
         this.focusedConsortSlug = null;
         this.focusedChildSlug = null;
+        this.consortOrder = null;
         if (this.currentGraph) {
           this.renderGraph(this.currentGraph);
         }
@@ -194,7 +195,11 @@ class EgoGraphController {
             !this.store.hasParent(this.focusedChildSlug, item.entity.slug)) ||
           (isChild &&
             this.focusedConsortSlug !== null &&
-            !this.store.hasParent(item.entity.slug, this.focusedConsortSlug));
+            !this.store.hasParent(item.entity.slug, this.focusedConsortSlug)) ||
+          (isChild &&
+            this.focusedChildSlug !== null &&
+            !this.isSiblingOfFocused(item.entity.slug, this.focusedChildSlug, graph.consorts) &&
+            item.entity.slug !== this.focusedChildSlug);
         const node = this.createNode({
           key: `${section}-${item.entity.id}`,
           slug: item.entity.slug,
@@ -259,7 +264,7 @@ class EgoGraphController {
     button.disabled = false;
     button.setAttribute("aria-label", `${node.name} — ${node.relationLabel}`);
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       const isSecondClick = this.activeNodeKey === node.key;
       this.setActiveNode(node.key);
 
@@ -271,11 +276,18 @@ class EgoGraphController {
         this.selectedConsortSlug = node.slug;
         this.focusedConsortSlug = node.slug;
         this.focusedChildSlug = null;
+        if (isSecondClick && node.slug !== this.currentSlug) {
+          this.resetFocusState();
+          const targets = this.computeTargetPositions(node.slug);
+          await Promise.all([
+            this.animateToCenter(wrapper),
+            targets ? this.animateOtherNodes(targets, node.slug) : Promise.resolve(),
+          ]);
+          this.setCurrentSlug(node.slug);
+          return;
+        }
         if (this.currentGraph && this.currentSlug) {
           this.renderGraph(this.currentGraph);
-        }
-        if (isSecondClick && node.slug !== this.currentSlug) {
-          this.setCurrentSlug(node.slug);
         }
       } else if (node.role !== "central") {
         if (node.role === "child") {
@@ -290,11 +302,26 @@ class EgoGraphController {
           this.focusedChildSlug = node.slug;
           this.selectedConsortSlug = null;
           this.focusedConsortSlug = null;
+          if (isSecondClick && node.slug !== this.currentSlug) {
+            this.resetFocusState();
+            const targets = this.computeTargetPositions(node.slug);
+            await Promise.all([
+              this.animateToCenter(wrapper),
+              targets ? this.animateOtherNodes(targets, node.slug) : Promise.resolve(),
+            ]);
+            this.setCurrentSlug(node.slug);
+            return;
+          }
           if (this.currentGraph) {
             this.renderGraph(this.currentGraph);
           }
-        }
-        if (isSecondClick && node.slug !== this.currentSlug) {
+        } else if (isSecondClick && node.slug !== this.currentSlug) {
+          this.resetFocusState();
+          const targets = this.computeTargetPositions(node.slug);
+          await Promise.all([
+            this.animateToCenter(wrapper),
+            targets ? this.animateOtherNodes(targets, node.slug) : Promise.resolve(),
+          ]);
           this.setCurrentSlug(node.slug);
         }
       }
@@ -379,6 +406,212 @@ class EgoGraphController {
       .map((c) => c.entity.slug);
     if (!parentConsorts.length) return false;
     return parentConsorts.some((parentSlug) => this.store.hasParent(childSlug, parentSlug));
+  }
+
+  private async animateToCenter(nodeEl: HTMLElement): Promise<void> {
+    // Suspend active glow during animation
+    nodeEl.classList.remove("is-active");
+    nodeEl.classList.remove("is-related");
+    nodeEl.classList.remove("is-sibling");
+    const sourceRect = nodeEl.getBoundingClientRect();
+    const rootRect = this.root.getBoundingClientRect();
+    const targetNode = this.root.querySelector<HTMLElement>('.ego-node[data-role="central"]');
+    const targetRect = targetNode?.getBoundingClientRect() ?? {
+      left: rootRect.left + rootRect.width / 2 - sourceRect.width / 2,
+      top: rootRect.top + rootRect.height / 2 - sourceRect.height / 2,
+      width: sourceRect.width * 2,
+      height: sourceRect.height * 2,
+    };
+
+    const clone = nodeEl.cloneNode(true) as HTMLElement;
+    clone.classList.add("ego-node-fly");
+    clone.classList.remove("is-active", "is-related", "is-sibling");
+    clone.style.position = "fixed";
+    clone.style.left = `${sourceRect.left}px`;
+    clone.style.top = `${sourceRect.top}px`;
+    clone.style.width = `${sourceRect.width}px`;
+    clone.style.height = `${sourceRect.height}px`;
+    clone.style.transformOrigin = "center center";
+    clone.style.zIndex = "9999";
+    clone.style.pointerEvents = "none";
+
+    document.body.appendChild(clone);
+
+    // Hide original during flight
+    nodeEl.classList.add("is-animating");
+    nodeEl.style.opacity = "0";
+
+    const dx = targetRect.left + targetRect.width / 2 - (sourceRect.left + sourceRect.width / 2);
+    const dy = targetRect.top + targetRect.height / 2 - (sourceRect.top + sourceRect.height / 2);
+    const scale = targetRect.width / sourceRect.width;
+
+    // Force reflow then animate
+    void clone.getBoundingClientRect();
+    clone.style.transition = "transform 320ms ease, opacity 320ms ease";
+    clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+
+    await new Promise<void>((resolve) => {
+      const done = () => {
+        clone.remove();
+        nodeEl.classList.remove("is-animating");
+        nodeEl.style.opacity = "";
+        resolve();
+      };
+      const timeout = window.setTimeout(done, 400);
+      clone.addEventListener(
+        "transitionend",
+        () => {
+          window.clearTimeout(timeout);
+          done();
+        },
+        { once: true },
+      );
+    });
+  }
+
+  private resetFocusState() {
+    this.selectedConsortSlug = null;
+    this.focusedConsortSlug = null;
+    this.focusedChildSlug = null;
+    this.childrenOrder = null;
+    this.consortOrder = null;
+    this.clearActiveNode();
+  }
+
+  private async animateOtherNodes(targetPositions: Map<string, DOMRect>, excludeSlug: string): Promise<void> {
+    const animations: Promise<void>[] = [];
+    this.nodeInstances.forEach((el) => {
+      const slug = el.dataset.slug;
+      if (!slug || slug === excludeSlug) return;
+      const target = targetPositions.get(slug);
+      if (!target) return;
+      animations.push(this.animateNodeTo(el, target));
+    });
+    if (animations.length) {
+      await Promise.all(animations);
+    }
+  }
+
+  private async animateNodeTo(nodeEl: HTMLElement, targetRect: DOMRect): Promise<void> {
+    nodeEl.classList.remove("is-active");
+    nodeEl.classList.remove("is-related");
+    nodeEl.classList.remove("is-sibling");
+    const sourceRect = nodeEl.getBoundingClientRect();
+    const clone = nodeEl.cloneNode(true) as HTMLElement;
+    clone.classList.add("ego-node-fly");
+    clone.classList.remove("is-active", "is-related", "is-sibling");
+    clone.style.position = "fixed";
+    clone.style.left = `${sourceRect.left}px`;
+    clone.style.top = `${sourceRect.top}px`;
+    clone.style.width = `${sourceRect.width}px`;
+    clone.style.height = `${sourceRect.height}px`;
+    clone.style.transformOrigin = "center center";
+    clone.style.zIndex = "9998";
+    clone.style.pointerEvents = "none";
+
+    document.body.appendChild(clone);
+    nodeEl.classList.add("is-animating");
+    nodeEl.style.opacity = "0";
+
+    const dx = targetRect.left + targetRect.width / 2 - (sourceRect.left + sourceRect.width / 2);
+    const dy = targetRect.top + targetRect.height / 2 - (sourceRect.top + sourceRect.height / 2);
+    const scale = targetRect.width / sourceRect.width;
+
+    void clone.getBoundingClientRect();
+    clone.style.transition = "transform 320ms ease, opacity 320ms ease";
+    clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+
+    await new Promise<void>((resolve) => {
+      const done = () => {
+        clone.remove();
+        nodeEl.classList.remove("is-animating");
+        nodeEl.style.opacity = "";
+        resolve();
+      };
+      const timeout = window.setTimeout(done, 400);
+      clone.addEventListener(
+        "transitionend",
+        () => {
+          window.clearTimeout(timeout);
+          done();
+        },
+        { once: true },
+      );
+    });
+  }
+
+  private computeTargetPositions(targetSlug: string): Map<string, DOMRect> | null {
+    const graph = this.store.getEgoGraph(targetSlug);
+    if (!graph) return null;
+
+    const ghostRoot = document.createElement("div");
+    const rootRect = this.root.getBoundingClientRect();
+    ghostRoot.className = "ego-graph-sky ego-graph-ghost";
+    ghostRoot.style.position = "fixed";
+    ghostRoot.style.left = "-99999px";
+    ghostRoot.style.top = "-99999px";
+    ghostRoot.style.width = `${rootRect.width}px`;
+    ghostRoot.style.height = `${rootRect.height}px`;
+    ghostRoot.style.pointerEvents = "none";
+    ghostRoot.style.visibility = "hidden";
+
+    const grid = document.createElement("div");
+    grid.className = "ego-graph-grid";
+    ghostRoot.appendChild(grid);
+
+    const sectionContents = new Map<RelationSection, HTMLElement>();
+    RELATION_SECTIONS.forEach((section) => {
+      const quad = document.createElement("div");
+      quad.className = "ego-quadrant";
+      const content = document.createElement("div");
+      content.className = "ego-quadrant-content";
+      quad.appendChild(content);
+      grid.appendChild(quad);
+      sectionContents.set(section, content);
+    });
+
+    const central = this.createGhostNode(graph.central.slug, graph.central.name, "central");
+    ghostRoot.appendChild(central);
+
+    RELATION_SECTIONS.forEach((section) => {
+      const container = sectionContents.get(section);
+      if (!container) return;
+      let nodes = sortSection(graph[section] as RelatedNode[]);
+      nodes.forEach((item) => {
+        const node = this.createGhostNode(item.entity.slug, item.entity.name, SECTION_ROLE[section]);
+        container.appendChild(node);
+      });
+    });
+
+    document.body.appendChild(ghostRoot);
+    const ghostRect = ghostRoot.getBoundingClientRect();
+    const positions = new Map<string, DOMRect>();
+    ghostRoot.querySelectorAll<HTMLElement>(".ego-node").forEach((el) => {
+      const slug = el.dataset.slug;
+      if (!slug) return;
+      const rect = el.getBoundingClientRect();
+      positions.set(
+        slug,
+        new DOMRect(
+          rootRect.left + (rect.left - ghostRect.left),
+          rootRect.top + (rect.top - ghostRect.top),
+          rect.width,
+          rect.height,
+        ),
+      );
+    });
+
+    ghostRoot.remove();
+    return positions;
+  }
+
+  private createGhostNode(slug: string, name: string, role: NodeRole): HTMLElement {
+    const wrapper = document.createElement("div");
+    wrapper.className = "ego-node";
+    wrapper.dataset.role = role;
+    wrapper.dataset.slug = slug;
+    wrapper.title = name;
+    return wrapper;
   }
 }
 
