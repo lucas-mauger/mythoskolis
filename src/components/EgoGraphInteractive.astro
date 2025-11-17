@@ -360,6 +360,11 @@ const clientScriptSrc = clientModule.default;
     animation: ego-glow 1.6s ease-in-out infinite;
   }
 
+  .ego-node.is-animating::before {
+    opacity: 0 !important;
+    animation: none !important;
+  }
+
   .ego-node.is-related::before {
     border-color: rgba(59, 130, 246, 0.7);
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.55), 0 0 22px rgba(59, 130, 246, 0.35);
@@ -461,6 +466,10 @@ const clientScriptSrc = clientModule.default;
 
   .ego-node.is-active[data-role="central"] .ego-node-action {
     display: inline-flex;
+  }
+
+  .ego-node-fly {
+    box-shadow: none !important;
   }
 
   .ego-graph-message {
