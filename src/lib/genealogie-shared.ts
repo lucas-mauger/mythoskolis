@@ -64,6 +64,7 @@ export interface GenealogieStore {
   getEntityBySlug(slug: string): GenealogieEntity | undefined;
   getEgoGraph(slug: string): EgoGraph | undefined;
   getGraphDisplayData(slug: string): GraphDisplayData | undefined;
+  hasParent(childSlug: string, parentSlug: string): boolean;
 }
 
 export function createGenealogieStore(data: GenealogieData): GenealogieStore {
@@ -158,5 +159,14 @@ export function createGenealogieStore(data: GenealogieData): GenealogieStore {
     getEntityBySlug: (slug: string) => entityBySlug.get(slug),
     getEgoGraph,
     getGraphDisplayData,
+    hasParent: (childSlug: string, parentSlug: string) => {
+      const child = entityBySlug.get(childSlug);
+      const parent = entityBySlug.get(parentSlug);
+      if (!child || !parent) return false;
+      return data.relations.some(
+        (relation) =>
+          relation.type === "parent" && relation.source_id === parent.id && relation.target_id === child.id,
+      );
+    },
   };
 }

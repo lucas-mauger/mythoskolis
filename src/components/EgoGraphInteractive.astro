@@ -34,7 +34,22 @@ const componentId = `ego-graph-${initialSlug}`;
           <div class="ego-quadrant-content" data-section="children"></div>
         </div>
       </div>
-      <div class="ego-graph-message">Chargement du graphe…</div>
+      <div class="ego-graph-message">Chargement du graphe...</div>
+    </div>
+  </div>
+
+  <div class="ego-legend">
+    <div class="ego-legend-item">
+      <span class="legend-dot legend-dot-active"></span>
+      <span>Personnage focalisé</span>
+    </div>
+    <div class="ego-legend-item">
+      <span class="legend-dot legend-dot-related"></span>
+      <span>Bleu : consort(s) / enfant(s) liés au focus</span>
+    </div>
+    <div class="ego-legend-item">
+      <span class="legend-dot legend-dot-sibling"></span>
+      <span>Vert : fratrie du focus (dans “Enfants”)</span>
     </div>
   </div>
 </section>
@@ -45,7 +60,7 @@ const componentId = `ego-graph-${initialSlug}`;
     width: min(80vw, 1100px);
     aspect-ratio: 16 / 9;
     border-radius: 1.5rem;
-    overflow: hidden;
+    overflow: visible;
     padding: 0;
     background: transparent;
   }
@@ -76,7 +91,7 @@ const componentId = `ego-graph-${initialSlug}`;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
-    padding: 1.25rem;
+    padding: 0.5rem;
     z-index: 1;
   }
 
@@ -86,7 +101,7 @@ const componentId = `ego-graph-${initialSlug}`;
     border: 1px dashed rgba(129, 140, 248, 0.4);
     background: rgba(255, 255, 255, 0.75);
     box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .ego-quadrant-label {
@@ -115,7 +130,7 @@ const componentId = `ego-graph-${initialSlug}`;
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 2.25rem 1.25rem 1.25rem;
+    padding: 4rem 1.25rem 1.25rem;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-auto-rows: 120px;
@@ -125,6 +140,7 @@ const componentId = `ego-graph-${initialSlug}`;
     align-content: flex-start;
     pointer-events: auto;
     overflow-y: auto;
+    overflow-x: visible;
     overscroll-behavior: contain;
     scrollbar-width: none;
     cursor: grab;
@@ -170,12 +186,14 @@ const componentId = `ego-graph-${initialSlug}`;
     position: relative;
     width: 75px;
     height: 75px;
-    transition: transform 250ms ease-out, opacity 200ms ease-out;
-    opacity: 0;
+    transition: transform 200ms ease-out;
+    opacity: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    overflow: visible;
+    z-index: 1;
   }
 
   .ego-node button {
@@ -256,6 +274,38 @@ const componentId = `ego-graph-${initialSlug}`;
     margin-top: 0;
   }
 
+  .ego-node.is-active {
+    z-index: 80;
+  }
+
+  .ego-node-action {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -120%);
+    background: #fff;
+    border: 1px solid rgba(79, 70, 229, 0.25);
+    border-radius: 0.75rem;
+    padding: 0.22rem 0.8rem;
+    font-size: 0.98rem;
+    font-weight: 700;
+    font-family: "Montserrat", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #8b5e34;
+    box-shadow: 0 8px 20px rgba(139, 94, 52, 0.18);
+    pointer-events: auto;
+    z-index: 200;
+    display: none;
+    text-align: center;
+    transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, color 140ms ease;
+  }
+
+  .ego-node[data-role="central"] .ego-node-action:hover {
+    transform: translate(-50%, -120%) scale(1.08);
+    box-shadow: 0 14px 32px rgba(139, 94, 52, 0.28);
+    border-color: rgba(139, 94, 52, 0.55);
+    color: #7a4f2d;
+  }
+
   .ego-node-role {
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -282,7 +332,133 @@ const componentId = `ego-graph-${initialSlug}`;
   }
 
   .ego-node.is-leaving {
+    opacity: 1;
+  }
+
+  .ego-node.is-muted {
+    opacity: 0.35;
+    filter: grayscale(60%);
+  }
+
+  .ego-node::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 9999px;
+    border: 2px solid rgba(249, 115, 22, 0.65);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.55), 0 0 18px rgba(249, 115, 22, 0.35);
     opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 160ms ease;
+  }
+
+  .ego-node.is-active::before {
+    opacity: 1;
+    animation: ego-glow 1.6s ease-in-out infinite;
+  }
+
+  .ego-node.is-related::before {
+    border-color: rgba(59, 130, 246, 0.7);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.55), 0 0 22px rgba(59, 130, 246, 0.35);
+    opacity: 1;
+    animation: ego-glow-blue 1.6s ease-in-out infinite;
+  }
+
+  .ego-node.is-sibling::before {
+    border-color: rgba(16, 185, 129, 0.8);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.55), 0 0 22px rgba(16, 185, 129, 0.35);
+    opacity: 1;
+    animation: ego-glow-green 1.6s ease-in-out infinite;
+  }
+
+  @keyframes ego-glow-green {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.55), 0 0 22px rgba(16, 185, 129, 0.35);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.7), 0 0 28px rgba(16, 185, 129, 0.45);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.55), 0 0 22px rgba(16, 185, 129, 0.35);
+    }
+  }
+
+  .ego-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    align-items: center;
+    font-size: 0.9rem;
+    color: rgb(55 65 81);
+    padding: 0.5rem 0.25rem 0;
+  }
+
+  .ego-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .legend-dot-active {
+    background: rgba(249, 115, 22, 0.9);
+  }
+
+  .legend-dot-related {
+    background: rgba(59, 130, 246, 0.9);
+  }
+
+  .legend-dot-sibling {
+    background: rgba(16, 185, 129, 0.9);
+  }
+
+  @keyframes ego-glow-blue {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.55), 0 0 22px rgba(59, 130, 246, 0.35);
+    }
+    50% {
+      transform: scale(1.04);
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.7), 0 0 28px rgba(59, 130, 246, 0.45);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.55), 0 0 22px rgba(59, 130, 246, 0.35);
+    }
+  }
+
+  @keyframes ego-glow {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.55), 0 0 18px rgba(249, 115, 22, 0.35);
+    }
+    50% {
+      transform: scale(1.04);
+      box-shadow: 0 0 16px rgba(249, 115, 22, 0.7), 0 0 26px rgba(249, 115, 22, 0.45);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.55), 0 0 18px rgba(249, 115, 22, 0.35);
+    }
+  }
+
+  .ego-node.is-active[data-role="central"] .ego-node-action {
+    display: inline-flex;
   }
 
   .ego-graph-message {
@@ -315,11 +491,11 @@ const componentId = `ego-graph-${initialSlug}`;
 
     .ego-graph-grid {
       gap: 0.75rem;
-      padding: 0.75rem;
+      padding: 0;
     }
 
     .ego-quadrant-content {
-      padding: 1.6rem 0.5rem 0.75rem;
+      padding: 2.4rem 0.5rem 0.75rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-auto-rows: 105px;
       gap: 0.75rem;
