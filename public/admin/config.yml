@@ -9,9 +9,9 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "dieux"
-    label: "Fiches dieux"
-    folder: "content/dieux"
+  - name: "entites"
+    label: "Fiches entités"
+    folder: "src/content/entites"
     create: true
     slug: "{{slug}}"
     extension: "md"

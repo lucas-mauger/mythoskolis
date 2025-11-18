@@ -1,441 +1,507 @@
 entities:
-  - id: cronos
-    name: Cronos
-    slug: cronos
-    culture: grecque
-  - id: rhea
-    name: Rhéa
-    slug: rhea
-    culture: grecque
-  - id: zeus
-    name: Zeus
-    slug: zeus
-    culture: grecque
-  - id: hera
-    name: Héra
-    slug: hera
-    culture: grecque
-  - id: demeter
-    name: Déméter
-    slug: demeter
-    culture: grecque
-  - id: hestia
-    name: Hestia
-    slug: hestia
-    culture: grecque
-  - id: poseidon
-    name: Poséidon
-    slug: poseidon
-    culture: grecque
-  - id: hades
-    name: Hadès
-    slug: hades
-    culture: grecque
-  - id: metis
-    name: Métis
-    slug: metis
-    culture: grecque
-  - id: athena
-    name: Athéna
-    slug: athena
-    culture: grecque
-  - id: leto
-    name: Léto
-    slug: leto
-    culture: grecque
-  - id: apollon
-    name: Apollon
-    slug: apollon
-    culture: grecque
-  - id: artemis
-    name: Artémis
-    slug: artemis
-    culture: grecque
-  - id: ares
-    name: Arès
-    slug: ares
-    culture: grecque
-  - id: hephaistos
-    name: Héphaïstos
-    slug: hephaistos
-    culture: grecque
-  - id: hermes
-    name: Hermès
-    slug: hermes
-    culture: grecque
-  - id: dionysos
-    name: Dionysos
-    slug: dionysos
-    culture: grecque
-  - id: persephone
-    name: Perséphone
-    slug: persephone
-    culture: grecque
-  - id: hebe
-    name: Hébé
-    slug: hebe
-    culture: grecque
-  - id: maia
-    name: Maia
-    slug: maia
-    culture: grecque
-  - id: semele
-    name: Sémélé
-    slug: semele
-    culture: grecque
-
+- id: cronos
+  name: Cronos
+  slug: cronos
+  culture: grecque
+  pantheon: grec
+  display_class: Titan / Titanide
+  nature: titan
+- id: rhea
+  name: Rhéa
+  slug: rhea
+  culture: grecque
+  pantheon: grec
+  display_class: Titan / Titanide
+  nature: titan
+- id: zeus
+  name: Zeus
+  slug: zeus
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: hera
+  name: Héra
+  slug: hera
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: demeter
+  name: Déméter
+  slug: demeter
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: hestia
+  name: Hestia
+  slug: hestia
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: poseidon
+  name: Poséidon
+  slug: poseidon
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: hades
+  name: Hadès
+  slug: hades
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: metis
+  name: Métis
+  slug: metis
+  culture: grecque
+  pantheon: grec
+  display_class: Océanide
+  nature:
+    category: divinite_maritime
+    subtype: oceanide
+- id: athena
+  name: Athéna
+  slug: athena
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: leto
+  name: Léto
+  slug: leto
+  culture: grecque
+  pantheon: grec
+  display_class: Titan / Titanide
+  nature: titan
+- id: apollon
+  name: Apollon
+  slug: apollon
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: artemis
+  name: Artémis
+  slug: artemis
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: ares
+  name: Arès
+  slug: ares
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: hephaistos
+  name: Héphaïstos
+  slug: hephaistos
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: hermes
+  name: Hermès
+  slug: hermes
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: dionysos
+  name: Dionysos
+  slug: dionysos
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: persephone
+  name: Perséphone
+  slug: persephone
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: hebe
+  name: Hébé
+  slug: hebe
+  culture: grecque
+  pantheon: grec
+  display_class: Dieu olympien
+  nature: olympien
+- id: maia
+  name: Maia
+  slug: maia
+  culture: grecque
+  pantheon: grec
+  display_class: Pléiade
+  nature:
+    category: nymphe
+    subtype: pleiade
+- id: semele
+  name: Sémélé
+  slug: semele
+  culture: grecque
+  pantheon: grec
+  display_class: Héros / Demi-dieu
+  nature: heros
 relations:
-  - source_id: cronos
-    target_id: zeus
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: rhea
-    target_id: zeus
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: cronos
-    target_id: hera
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: rhea
-    target_id: hera
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: zeus
-    target_id: hera
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-  - source_id: zeus
-    target_id: hera
-    type: consort
-    source_texts:
-      - author: Pausanias
-        work: Description de la Grèce
-        note: "Livre II"
-  - source_id: cronos
-    target_id: demeter
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: rhea
-    target_id: demeter
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: cronos
-    target_id: hestia
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: rhea
-    target_id: hestia
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: cronos
-    target_id: poseidon
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: rhea
-    target_id: poseidon
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: cronos
-    target_id: hades
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: rhea
-    target_id: hades
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: zeus
-    target_id: metis
-    type: consort
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.886-900"
-  - source_id: zeus
-    target_id: athena
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.886-900"
-  - source_id: metis
-    target_id: athena
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.886-900"
-  - source_id: zeus
-    target_id: leto
-    type: consort
-    source_texts:
-      - author: Callimaque
-        work: Hymne à Délos
-  - source_id: leto
-    target_id: apollon
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.918-920"
-  - source_id: zeus
-    target_id: apollon
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.918-920"
-  - source_id: leto
-    target_id: artemis
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.918-920"
-  - source_id: zeus
-    target_id: artemis
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.918-920"
-  - source_id: hera
-    target_id: ares
-    type: parent
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-  - source_id: zeus
-    target_id: ares
-    type: parent
-    source_texts:
-      - author: Homère
-        work: Iliade
-        note: "V, 890-896"
-  - source_id: hestia
-    target_id: zeus
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hestia
-    target_id: hera
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hestia
-    target_id: demeter
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hestia
-    target_id: hades
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hestia
-    target_id: poseidon
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: demeter
-    target_id: hera
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: demeter
-    target_id: hades
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: demeter
-    target_id: poseidon
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: demeter
-    target_id: zeus
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hera
-    target_id: hades
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hera
-    target_id: poseidon
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hades
-    target_id: poseidon
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hades
-    target_id: zeus
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: poseidon
-    target_id: zeus
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.453-506"
-  - source_id: hera
-    target_id: hephaistos
-    type: parent
-    variant: "Naissance par Héra seule"
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.924-926"
-  - source_id: zeus
-    target_id: hephaistos
-    type: parent
-    variant: "Tradition homérique"
-    source_texts:
-      - author: Homère
-        work: Iliade
-        note: "I, 571-600"
-  - source_id: apollon
-    target_id: artemis
-    type: sibling
-    source_texts:
-      - author: Hésiode
-        work: Théogonie
-        note: "v.918-920"
-  - source_id: zeus
-    target_id: maia
-    type: consort
-    source_texts:
-      - author: Homère
-        work: Hymne homérique à Hermès
-  - source_id: maia
-    target_id: hermes
-    type: parent
-    source_texts:
-      - author: Homère
-        work: Hymne homérique à Hermès
-  - source_id: zeus
-    target_id: hermes
-    type: parent
-    source_texts:
-      - author: Homère
-        work: Hymne homérique à Hermès
-  - source_id: zeus
-    target_id: semele
-    type: consort
-    source_texts:
-      - author: Apollodore
-        work: Bibliothèque
-  - source_id: semele
-    target_id: dionysos
-    type: parent
-    source_texts:
-      - author: Euripide
-        work: Les Bacchantes
-  - source_id: zeus
-    target_id: dionysos
-    type: parent
-    source_texts:
-      - author: Euripide
-        work: Les Bacchantes
-  - source_id: zeus
-    target_id: demeter
-    type: consort
-    source_texts:
-      - author: Homère
-        work: Hymne homérique à Déméter
-  - source_id: demeter
-    target_id: persephone
-    type: parent
-    source_texts:
-      - author: Homère
-        work: Hymne homérique à Déméter
-  - source_id: zeus
-    target_id: persephone
-    type: parent
-    source_texts:
-      - author: Homère
-        work: Hymne homérique à Déméter
-  - source_id: zeus
-    target_id: hebe
-    type: parent
-    source_texts:
-      - author: Homère
-        work: Iliade
-        note: "IV, 2"
-  - source_id: hera
-    target_id: hebe
-    type: parent
-    source_texts:
-      - author: Homère
-        work: Iliade
-        note: "IV, 2"
+- source_id: cronos
+  target_id: zeus
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: rhea
+  target_id: zeus
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: cronos
+  target_id: hera
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: rhea
+  target_id: hera
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: zeus
+  target_id: hera
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+- source_id: zeus
+  target_id: hera
+  type: consort
+  source_texts:
+  - author: Pausanias
+    work: Description de la Grèce
+    note: Livre II
+- source_id: cronos
+  target_id: demeter
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: rhea
+  target_id: demeter
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: cronos
+  target_id: hestia
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: rhea
+  target_id: hestia
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: cronos
+  target_id: poseidon
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: rhea
+  target_id: poseidon
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: cronos
+  target_id: hades
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: rhea
+  target_id: hades
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: zeus
+  target_id: metis
+  type: consort
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.886-900
+- source_id: zeus
+  target_id: athena
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.886-900
+- source_id: metis
+  target_id: athena
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.886-900
+- source_id: zeus
+  target_id: leto
+  type: consort
+  source_texts:
+  - author: Callimaque
+    work: Hymne à Délos
+- source_id: leto
+  target_id: apollon
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.918-920
+- source_id: zeus
+  target_id: apollon
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.918-920
+- source_id: leto
+  target_id: artemis
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.918-920
+- source_id: zeus
+  target_id: artemis
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.918-920
+- source_id: hera
+  target_id: ares
+  type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+- source_id: zeus
+  target_id: ares
+  type: parent
+  source_texts:
+  - author: Homère
+    work: Iliade
+    note: V, 890-896
+- source_id: hestia
+  target_id: zeus
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hestia
+  target_id: hera
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hestia
+  target_id: demeter
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hestia
+  target_id: hades
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hestia
+  target_id: poseidon
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: demeter
+  target_id: hera
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: demeter
+  target_id: hades
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: demeter
+  target_id: poseidon
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: demeter
+  target_id: zeus
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hera
+  target_id: hades
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hera
+  target_id: poseidon
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hades
+  target_id: poseidon
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hades
+  target_id: zeus
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: poseidon
+  target_id: zeus
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: hera
+  target_id: hephaistos
+  type: parent
+  variant: Naissance par Héra seule
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.924-926
+- source_id: zeus
+  target_id: hephaistos
+  type: parent
+  variant: Tradition homérique
+  source_texts:
+  - author: Homère
+    work: Iliade
+    note: I, 571-600
+- source_id: apollon
+  target_id: artemis
+  type: sibling
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.918-920
+- source_id: zeus
+  target_id: maia
+  type: consort
+  source_texts:
+  - author: Homère
+    work: Hymne homérique à Hermès
+- source_id: maia
+  target_id: hermes
+  type: parent
+  source_texts:
+  - author: Homère
+    work: Hymne homérique à Hermès
+- source_id: zeus
+  target_id: hermes
+  type: parent
+  source_texts:
+  - author: Homère
+    work: Hymne homérique à Hermès
+- source_id: zeus
+  target_id: semele
+  type: consort
+  source_texts:
+  - author: Apollodore
+    work: Bibliothèque
+- source_id: semele
+  target_id: dionysos
+  type: parent
+  source_texts:
+  - author: Euripide
+    work: Les Bacchantes
+- source_id: zeus
+  target_id: dionysos
+  type: parent
+  source_texts:
+  - author: Euripide
+    work: Les Bacchantes
+- source_id: zeus
+  target_id: demeter
+  type: consort
+  source_texts:
+  - author: Homère
+    work: Hymne homérique à Déméter
+- source_id: demeter
+  target_id: persephone
+  type: parent
+  source_texts:
+  - author: Homère
+    work: Hymne homérique à Déméter
+- source_id: zeus
+  target_id: persephone
+  type: parent
+  source_texts:
+  - author: Homère
+    work: Hymne homérique à Déméter
+- source_id: zeus
+  target_id: hebe
+  type: parent
+  source_texts:
+  - author: Homère
+    work: Iliade
+    note: IV, 2
+- source_id: hera
+  target_id: hebe
+  type: parent
+  source_texts:
+  - author: Homère
+    work: Iliade
+    note: IV, 2

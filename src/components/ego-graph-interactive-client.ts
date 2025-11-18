@@ -350,7 +350,7 @@ class EgoGraphController {
       action.textContent = "Aller à la fiche";
       action.addEventListener("click", (event) => {
         event.stopPropagation();
-        window.location.href = `/dieux/${node.slug}/`;
+        window.location.href = `/entites/${node.slug}/`;
       });
       wrapper.appendChild(action);
     }
