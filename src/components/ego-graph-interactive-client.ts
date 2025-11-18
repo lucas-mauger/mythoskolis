@@ -53,7 +53,7 @@ export async function initEgoGraphInteractive(containerId: string, initialSlug: 
     const data = (await response.json()) as GenealogieData;
     const store = createGenealogieStore(data);
     const controller = new EgoGraphController(root, store);
-    controller.setCurrentSlug(initialSlug);
+    controller.setCurrentSlug(initialSlug).catch((err) => console.error(err));
   } catch (error) {
     const message = error instanceof Error ? error.message : "Erreur inconnue";
     renderMessage(root, message);
@@ -112,7 +112,7 @@ class EgoGraphController {
 
   }
 
-  setCurrentSlug(slug: string) {
+  async setCurrentSlug(slug: string) {
     const graph = this.store.getEgoGraph(slug);
     if (!graph) {
       this.showMessage("Pas encore de données pour ce dieu.");
@@ -128,12 +128,12 @@ class EgoGraphController {
     this.activeNodeKey = null;
     this.sectionScrollTops.clear();
     this.clearMessage();
-    this.renderGraph(graph);
+    await this.renderGraph(graph);
   }
 
-  private renderGraph(graph: EgoGraph) {
-    this.captureScrollTops();
+  private async renderGraph(graph: EgoGraph) {
     this.clearNodes();
+    this.captureScrollTops();
 
     const centralNode = this.createNode({
       key: `central-${graph.central.id}`,
@@ -152,6 +152,8 @@ class EgoGraphController {
       }
       const prevScroll = this.sectionScrollTops.get(section) ?? container.scrollTop;
       container.innerHTML = "";
+      const columns = window.matchMedia("(max-width: 640px)").matches ? 2 : 3;
+      let index = 0;
       let nodes = sortSection(graph[section] as RelatedNode[]);
       if (section === "children" && this.childrenOrder && this.childrenOrder.length) {
         nodes = sortByOrder(nodes, this.childrenOrder);
@@ -211,6 +213,11 @@ class EgoGraphController {
           isRelatedConsort,
           isSibling,
         });
+        const row = Math.floor(index / columns) + 1;
+        const col = (index % columns) + 1;
+        node.style.gridRowStart = String(row);
+        node.style.gridColumnStart = String(col);
+        index += 1;
         container.appendChild(node);
         requestAnimationFrame(() => node.classList.add("is-visible"));
       });
@@ -283,11 +290,11 @@ class EgoGraphController {
             this.animateToCenter(wrapper),
             targets ? this.animateOtherNodes(targets, node.slug) : Promise.resolve(),
           ]);
-          this.setCurrentSlug(node.slug);
+          await this.setCurrentSlug(node.slug);
           return;
         }
         if (this.currentGraph && this.currentSlug) {
-          this.renderGraph(this.currentGraph);
+          await this.renderGraph(this.currentGraph);
         }
       } else if (node.role !== "central") {
         if (node.role === "child") {
@@ -309,11 +316,11 @@ class EgoGraphController {
               this.animateToCenter(wrapper),
               targets ? this.animateOtherNodes(targets, node.slug) : Promise.resolve(),
             ]);
-            this.setCurrentSlug(node.slug);
+            await this.setCurrentSlug(node.slug);
             return;
           }
           if (this.currentGraph) {
-            this.renderGraph(this.currentGraph);
+            await this.renderGraph(this.currentGraph);
           }
         } else if (isSecondClick && node.slug !== this.currentSlug) {
           this.resetFocusState();
@@ -322,7 +329,7 @@ class EgoGraphController {
             this.animateToCenter(wrapper),
             targets ? this.animateOtherNodes(targets, node.slug) : Promise.resolve(),
           ]);
-          this.setCurrentSlug(node.slug);
+          await this.setCurrentSlug(node.slug);
         }
       }
     });
@@ -447,7 +454,7 @@ class EgoGraphController {
 
     // Force reflow then animate
     void clone.getBoundingClientRect();
-    clone.style.transition = "transform 320ms ease, opacity 320ms ease";
+    clone.style.transition = "transform 450ms ease, opacity 450ms ease";
     clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
 
     await new Promise<void>((resolve) => {
@@ -457,7 +464,7 @@ class EgoGraphController {
         nodeEl.style.opacity = "";
         resolve();
       };
-      const timeout = window.setTimeout(done, 400);
+      const timeout = window.setTimeout(done, 600);
       clone.addEventListener(
         "transitionend",
         () => {
@@ -497,19 +504,18 @@ class EgoGraphController {
     nodeEl.classList.remove("is-related");
     nodeEl.classList.remove("is-sibling");
     const sourceRect = nodeEl.getBoundingClientRect();
+    const frame = this.createClipFrame(nodeEl);
     const clone = nodeEl.cloneNode(true) as HTMLElement;
     clone.classList.add("ego-node-fly");
     clone.classList.remove("is-active", "is-related", "is-sibling");
-    clone.style.position = "fixed";
-    clone.style.left = `${sourceRect.left}px`;
-    clone.style.top = `${sourceRect.top}px`;
+    clone.style.position = "absolute";
+    clone.style.left = `${sourceRect.left - frame.rect.left}px`;
+    clone.style.top = `${sourceRect.top - frame.rect.top}px`;
     clone.style.width = `${sourceRect.width}px`;
     clone.style.height = `${sourceRect.height}px`;
     clone.style.transformOrigin = "center center";
-    clone.style.zIndex = "9998";
     clone.style.pointerEvents = "none";
-
-    document.body.appendChild(clone);
+    frame.container.appendChild(clone);
     nodeEl.classList.add("is-animating");
     nodeEl.style.opacity = "0";
 
@@ -518,17 +524,18 @@ class EgoGraphController {
     const scale = targetRect.width / sourceRect.width;
 
     void clone.getBoundingClientRect();
-    clone.style.transition = "transform 320ms ease, opacity 320ms ease";
+    clone.style.transition = "transform 450ms ease, opacity 450ms ease";
     clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
 
     await new Promise<void>((resolve) => {
       const done = () => {
         clone.remove();
+        frame.container.remove();
         nodeEl.classList.remove("is-animating");
         nodeEl.style.opacity = "";
         resolve();
       };
-      const timeout = window.setTimeout(done, 400);
+      const timeout = window.setTimeout(done, 600);
       clone.addEventListener(
         "transitionend",
         () => {
@@ -576,9 +583,16 @@ class EgoGraphController {
     RELATION_SECTIONS.forEach((section) => {
       const container = sectionContents.get(section);
       if (!container) return;
+      const columns = window.matchMedia("(max-width: 640px)").matches ? 2 : 3;
+      let index = 0;
       let nodes = sortSection(graph[section] as RelatedNode[]);
       nodes.forEach((item) => {
         const node = this.createGhostNode(item.entity.slug, item.entity.name, SECTION_ROLE[section]);
+        const row = Math.floor(index / columns) + 1;
+        const col = (index % columns) + 1;
+        node.style.gridRowStart = String(row);
+        node.style.gridColumnStart = String(col);
+        index += 1;
         container.appendChild(node);
       });
     });
@@ -612,6 +626,22 @@ class EgoGraphController {
     wrapper.dataset.slug = slug;
     wrapper.title = name;
     return wrapper;
+  }
+
+  private createClipFrame(nodeEl: HTMLElement): { container: HTMLElement; rect: DOMRect } {
+    const container = document.createElement("div");
+    const grid = this.root.querySelector(".ego-graph-grid");
+    const rect = grid?.getBoundingClientRect() ?? this.root.getBoundingClientRect();
+    container.style.position = "fixed";
+    container.style.left = `${rect.left}px`;
+    container.style.top = `${rect.top}px`;
+    container.style.width = `${rect.width}px`;
+    container.style.height = `${rect.height}px`;
+    container.style.overflow = "hidden";
+    container.style.pointerEvents = "none";
+    container.style.zIndex = "9997";
+    document.body.appendChild(container);
+    return { container, rect };
   }
 }
 
