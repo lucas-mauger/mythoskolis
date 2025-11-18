@@ -1,6 +1,18 @@
 ---
 type GraphDisplayData = import("../lib/genealogie").GraphDisplayData;
 const { central, sections } = Astro.props as GraphDisplayData;
+
+function getNatureLabel(node: any): string | null {
+  if (node.display_class) return node.display_class;
+  const n = node.nature;
+  if (typeof n === "string") return n;
+  if (n && typeof n === "object") {
+    const { category, subtype } = n as { category?: string; subtype?: string };
+    if (category && subtype) return `${category} — ${subtype}`;
+    if (category) return category;
+  }
+  return null;
+}
 ---
 
 <section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 space-y-8">
@@ -21,13 +33,15 @@ const { central, sections } = Astro.props as GraphDisplayData;
         {section.nodes.length ? (
           <ul class="space-y-3">
             {section.nodes.map((node) => {
-              const primarySource = node.sources[0];
+              const primarySource = node.sources?.[0];
               return (
                 <li class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm text-sm">
                   <div class="flex items-start justify-between gap-3">
                     <div>
                       <p class="font-semibold text-gray-900">{node.name}</p>
-                      <p class="text-xs uppercase tracking-wide text-indigo-600">{node.relationType}</p>
+                      {node.display_class || node.nature ? (
+                        <span class="nature-badge">{getNatureLabel(node)}</span>
+                      ) : null}
                     </div>
                     <a
                       href={`/entites/${node.slug}/`}
@@ -60,3 +74,18 @@ const { central, sections } = Astro.props as GraphDisplayData;
     ))}
   </div>
 </section>
+
+<style>
+  .nature-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    background: #f8f1e7;
+    color: #8b5a2b;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 90, 43, 0.22);
+  }
+</style>

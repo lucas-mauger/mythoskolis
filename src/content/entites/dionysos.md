@@ -1,22 +1,24 @@
 ---
-title: "Dionysos"
-role: "Dieu du vin, de l’ivresse sacrée, du théâtre et de la transe"
-description: "Divinité de l’extase, de la libération des contraintes et des forces vitales, Dionysos incarne la joie débridée autant que la folie."
-video: "/videos/dionysos.mp4"
+title: Dionysos
+role: Dieu du vin, de l’ivresse sacrée, du théâtre et de la transe
+description: Divinité de l’extase, de la libération des contraintes et des forces
+  vitales, Dionysos incarne la joie débridée autant que la folie.
+video: /videos/dionysos.mp4
 parents:
-  - "Zeus"
-  - "Sémélé"
+- Zeus
+- Sémélé
 domaines:
-  - "Vin"
-  - "Fête"
-  - "Théâtre"
-  - "Transe"
-  - "Folie sacrée"
+- Vin
+- Fête
+- Théâtre
+- Transe
+- Folie sacrée
 symboles:
-  - "Thyrse"
-  - "Vigne"
-  - "Panthère"
-  - "Coupe de vin"
+- Thyrse
+- Vigne
+- Panthère
+- Coupe de vin
+pantheon: grec
 ---
 
 Dionysos est le dieu de la **rupture des limites**, celui qui défait les contraintes sociales, psychologiques et même divines.  

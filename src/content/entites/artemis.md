@@ -1,20 +1,22 @@
 ---
-title: "Artémis"
-role: "Déesse de la chasse et de la nature sauvage"
-description: "Déesse farouche, protectrice des jeunes filles, associée à la lune et aux espaces vierges."
-video: "/videos/artemis.mp4"
+title: Artémis
+role: Déesse de la chasse et de la nature sauvage
+description: Déesse farouche, protectrice des jeunes filles, associée à la lune et
+  aux espaces vierges.
+video: /videos/artemis.mp4
 parents:
-  - "Zeus"
-  - "Léto"
+- Zeus
+- Léto
 domaines:
-  - "Chasse"
-  - "Arc"
-  - "Lune"
-  - "Nature sauvage"
+- Chasse
+- Arc
+- Lune
+- Nature sauvage
 symboles:
-  - "Arc d'argent"
-  - "Biche"
-  - "Lune"
+- Arc d'argent
+- Biche
+- Lune
+pantheon: grec
 ---
 
 Artémis est la fille de Zeus et de Léto, et la sœur jumelle d’Apollon.  

@@ -1,19 +1,21 @@
 ---
-title: "Léto"
-role: "Titanide protectrice des mères, mère d'Apollon et Artémis"
-description: "Fille de Coéos et Phébé, Léto endure les persécutions d'Héra avant d'enfanter les jumeaux lumineux de Zeus."
-video: "/videos/leto.mp4"
+title: Léto
+role: Titanide protectrice des mères, mère d'Apollon et Artémis
+description: Fille de Coéos et Phébé, Léto endure les persécutions d'Héra avant d'enfanter
+  les jumeaux lumineux de Zeus.
+video: /videos/leto.mp4
 parents:
-  - "Coéos"
-  - "Phébé"
+- Coéos
+- Phébé
 domaines:
-  - "Maternité"
-  - "Protection des naissances"
-  - "Île de Délos"
+- Maternité
+- Protection des naissances
+- Île de Délos
 symboles:
-  - "Voile maternel"
-  - "Palmier sacré"
-  - "Arc jumeau"
+- Voile maternel
+- Palmier sacré
+- Arc jumeau
+pantheon: grec
 ---
 
 Léto est la mère courageuse d'Apollon et Artémis. Pour échapper à la jalousie d'Héra, elle parcourt le monde jusqu'à trouver refuge sur l'île flottante de Délos, qui se fixe pour accueillir ses enfants.

@@ -1,21 +1,23 @@
 ---
-title: "Héphaïstos"
-role: "Dieu du feu, des forges, des métaux et de l’artisanat"
-description: "Maître artisan de l’Olympe, Héphaïstos façonne les armes et objets divins, alliant technique, ingéniosité et puissance du feu."
-video: "/videos/hephaistos.mp4"
+title: Héphaïstos
+role: Dieu du feu, des forges, des métaux et de l’artisanat
+description: Maître artisan de l’Olympe, Héphaïstos façonne les armes et objets divins,
+  alliant technique, ingéniosité et puissance du feu.
+video: /videos/hephaistos.mp4
 parents:
-  - "Héra"         # version la plus connue : naissance parthénogénétique
+- Héra
 domaines:
-  - "Forge"
-  - "Feu"
-  - "Métallurgie"
-  - "Volcans"
-  - "Artisanat"
+- Forge
+- Feu
+- Métallurgie
+- Volcans
+- Artisanat
 symboles:
-  - "Marteau"
-  - "Enclume"
-  - "Pinces"
-  - "Feu de forge"
+- Marteau
+- Enclume
+- Pinces
+- Feu de forge
+pantheon: grec
 ---
 
 Héphaïstos est le forgeron divin, artisan des armes, armures et objets sacrés les plus importants de la mythologie grecque.  

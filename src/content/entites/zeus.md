@@ -1,20 +1,22 @@
 ---
-title: "Zeus"
-role: "Roi des dieux — Maître du ciel, du tonnerre et de la foudre"
-description: "Souverain de l’Olympe, arbitre des conflits divins et humains, père de nombreux héros et divinités."
-video: "/videos/zeus.mp4"
+title: Zeus
+role: Roi des dieux — Maître du ciel, du tonnerre et de la foudre
+description: Souverain de l’Olympe, arbitre des conflits divins et humains, père de
+  nombreux héros et divinités.
+video: /videos/zeus.mp4
 parents:
-  - "Cronos"
-  - "Rhéa"
+- Cronos
+- Rhéa
 domaines:
-  - "Ciel"
-  - "Tonnerre"
-  - "Justice"
-  - "Rois"
+- Ciel
+- Tonnerre
+- Justice
+- Rois
 symboles:
-  - "Foudre"
-  - "Aigle"
-  - "Chêne"
+- Foudre
+- Aigle
+- Chêne
+pantheon: grec
 ---
 
 Zeus est le plus puissant des dieux de l’Olympe.  

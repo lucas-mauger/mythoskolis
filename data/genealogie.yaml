@@ -1,4 +1,18 @@
 entities:
+- id: gaia
+  name: Gaïa
+  slug: gaia
+  culture: grecque
+  pantheon: grec
+  display_class: Divinité primordiale
+  nature: primordial
+- id: ouranos
+  name: Ouranos
+  slug: ouranos
+  culture: grecque
+  pantheon: grec
+  display_class: Divinité primordiale
+  nature: primordial
 - id: cronos
   name: Cronos
   slug: cronos
@@ -151,6 +165,26 @@ entities:
   display_class: Héros / Demi-dieu
   nature: heros
 relations:
+- source_id: gaia
+  target_id: ouranos
+  type: consort
+  source_texts: []
+- source_id: gaia
+  target_id: cronos
+  type: parent
+  source_texts: []
+- source_id: ouranos
+  target_id: cronos
+  type: parent
+  source_texts: []
+- source_id: gaia
+  target_id: rhea
+  type: parent
+  source_texts: []
+- source_id: ouranos
+  target_id: rhea
+  type: parent
+  source_texts: []
 - source_id: cronos
   target_id: zeus
   type: parent
@@ -175,6 +209,13 @@ relations:
 - source_id: rhea
   target_id: hera
   type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: cronos
+  target_id: rhea
+  type: sibling
   source_texts:
   - author: Hésiode
     work: Théogonie
@@ -244,6 +285,13 @@ relations:
 - source_id: rhea
   target_id: hades
   type: parent
+  source_texts:
+  - author: Hésiode
+    work: Théogonie
+    note: v.453-506
+- source_id: cronos
+  target_id: rhea
+  type: consort
   source_texts:
   - author: Hésiode
     work: Théogonie

@@ -132,8 +132,8 @@ class EgoGraphController {
   }
 
   private async renderGraph(graph: EgoGraph) {
-    this.clearNodes();
     this.captureScrollTops();
+    this.clearNodes();
 
     const centralNode = this.createNode({
       key: `central-${graph.central.id}`,
@@ -141,6 +141,7 @@ class EgoGraphController {
       name: graph.central.name,
       role: "central",
       relationLabel: RELATION_LABELS.central,
+      isRelatedConsort: this.focusedChildSlug !== null,
     });
     this.root.appendChild(centralNode);
     requestAnimationFrame(() => centralNode.classList.add("is-visible"));
@@ -151,10 +152,22 @@ class EgoGraphController {
         return;
       }
       const prevScroll = this.sectionScrollTops.get(section) ?? container.scrollTop;
+      const shouldResetScroll =
+        section === "consorts" &&
+        this.focusedChildSlug !== null &&
+        (graph.consorts ?? []).some((c) => this.store.hasParent(this.focusedChildSlug!, c.entity.slug));
+      const restoreScroll = shouldResetScroll ? 0 : prevScroll;
       container.innerHTML = "";
-      const columns = window.matchMedia("(max-width: 640px)").matches ? 2 : 3;
+      const isMobile = window.matchMedia("(max-width: 640px)").matches;
+      const baseColumns = isMobile ? 2 : 3;
+      let columns = baseColumns;
       let index = 0;
       let nodes = sortSection(graph[section] as RelatedNode[]);
+      const isCompactParents = section === "parents" && nodes.length > 0 && nodes.length <= 2;
+      container.classList.toggle("is-compact-parents", isCompactParents);
+      if (isCompactParents) {
+        columns = isMobile ? 1 : Math.min(2, nodes.length);
+      }
       if (section === "children" && this.childrenOrder && this.childrenOrder.length) {
         nodes = sortByOrder(nodes, this.childrenOrder);
       }
@@ -225,7 +238,7 @@ class EgoGraphController {
       container.classList.toggle("has-content", nodes.length > 0);
       // Restore scroll position to avoid jump-to-top
       requestAnimationFrame(() => {
-        container.scrollTop = prevScroll;
+        container.scrollTop = restoreScroll;
       });
     });
 
@@ -330,6 +343,25 @@ class EgoGraphController {
             targets ? this.animateOtherNodes(targets, node.slug) : Promise.resolve(),
           ]);
           await this.setCurrentSlug(node.slug);
+        } else {
+          // Parent or sibling first click: clear previous child-related focus/halos.
+          this.focusedChildSlug = null;
+          this.focusedConsortSlug = null;
+          this.selectedConsortSlug = null;
+          if (this.currentGraph) {
+            await this.renderGraph(this.currentGraph);
+          }
+        }
+      } else {
+        // Clicking the central node clears related halos/focus states but keeps central active/displayed
+        this.focusedChildSlug = null;
+        this.focusedConsortSlug = null;
+        this.selectedConsortSlug = null;
+        this.childrenOrder = null;
+        this.consortOrder = null;
+        if (this.currentGraph) {
+          await this.renderGraph(this.currentGraph);
+          this.setActiveNode(node.key);
         }
       }
     });
@@ -420,6 +452,10 @@ class EgoGraphController {
     nodeEl.classList.remove("is-active");
     nodeEl.classList.remove("is-related");
     nodeEl.classList.remove("is-sibling");
+    const originalLabel = nodeEl.querySelector<HTMLElement>(".ego-node-label");
+    if (originalLabel) {
+      originalLabel.style.visibility = "hidden";
+    }
     const sourceRect = nodeEl.getBoundingClientRect();
     const rootRect = this.root.getBoundingClientRect();
     const targetNode = this.root.querySelector<HTMLElement>('.ego-node[data-role="central"]');
@@ -433,6 +469,7 @@ class EgoGraphController {
     const clone = nodeEl.cloneNode(true) as HTMLElement;
     clone.classList.add("ego-node-fly");
     clone.classList.remove("is-active", "is-related", "is-sibling");
+    clone.querySelector(".ego-node-label")?.remove();
     clone.style.position = "fixed";
     clone.style.left = `${sourceRect.left}px`;
     clone.style.top = `${sourceRect.top}px`;
@@ -462,6 +499,9 @@ class EgoGraphController {
         clone.remove();
         nodeEl.classList.remove("is-animating");
         nodeEl.style.opacity = "";
+        if (originalLabel) {
+          originalLabel.style.visibility = "";
+        }
         resolve();
       };
       const timeout = window.setTimeout(done, 600);
@@ -503,11 +543,16 @@ class EgoGraphController {
     nodeEl.classList.remove("is-active");
     nodeEl.classList.remove("is-related");
     nodeEl.classList.remove("is-sibling");
+    const originalLabel = nodeEl.querySelector<HTMLElement>(".ego-node-label");
+    if (originalLabel) {
+      originalLabel.style.visibility = "hidden";
+    }
     const sourceRect = nodeEl.getBoundingClientRect();
     const frame = this.createClipFrame(nodeEl);
     const clone = nodeEl.cloneNode(true) as HTMLElement;
     clone.classList.add("ego-node-fly");
     clone.classList.remove("is-active", "is-related", "is-sibling");
+    clone.querySelector(".ego-node-label")?.remove();
     clone.style.position = "absolute";
     clone.style.left = `${sourceRect.left - frame.rect.left}px`;
     clone.style.top = `${sourceRect.top - frame.rect.top}px`;
@@ -533,6 +578,9 @@ class EgoGraphController {
         frame.container.remove();
         nodeEl.classList.remove("is-animating");
         nodeEl.style.opacity = "";
+        if (originalLabel) {
+          originalLabel.style.visibility = "";
+        }
         resolve();
       };
       const timeout = window.setTimeout(done, 600);
@@ -553,6 +601,8 @@ class EgoGraphController {
 
     const ghostRoot = document.createElement("div");
     const rootRect = this.root.getBoundingClientRect();
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
+    const baseColumns = isMobile ? 2 : 3;
     ghostRoot.className = "ego-graph-sky ego-graph-ghost";
     ghostRoot.style.position = "fixed";
     ghostRoot.style.left = "-99999px";
@@ -583,9 +633,14 @@ class EgoGraphController {
     RELATION_SECTIONS.forEach((section) => {
       const container = sectionContents.get(section);
       if (!container) return;
-      const columns = window.matchMedia("(max-width: 640px)").matches ? 2 : 3;
+      let columns = baseColumns;
       let index = 0;
       let nodes = sortSection(graph[section] as RelatedNode[]);
+      const isCompactParents = section === "parents" && nodes.length > 0 && nodes.length <= 2;
+      if (isCompactParents) {
+        columns = isMobile ? 1 : Math.min(2, nodes.length);
+        container.classList.add("is-compact-parents");
+      }
       nodes.forEach((item) => {
         const node = this.createGhostNode(item.entity.slug, item.entity.name, SECTION_ROLE[section]);
         const row = Math.floor(index / columns) + 1;

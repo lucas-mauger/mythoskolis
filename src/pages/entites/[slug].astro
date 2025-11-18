@@ -4,7 +4,7 @@ import Footer from '../../components/Footer.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
 import EgoGraph from '../../components/EgoGraph.astro';
-import { getGraphDisplayData } from '../../lib/genealogie';
+import { getGraphDisplayData, getEntityBySlug } from '../../lib/genealogie';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +21,7 @@ const { entry } = Astro.props;
 const { title, description, image, role, parents, domaines, symboles, gender } = entry.data;
 const { Content } = await entry.render();
 const genealogie = getGraphDisplayData(entry.slug);
+const yamlEntity = getEntityBySlug(entry.slug);
 
 // Resolve project root from this file (/src/pages/entites/[slug].astro -> up 3 levels)
 const projectRoot = fileURLToPath(new URL('../../..', import.meta.url));
@@ -35,6 +36,9 @@ const imageSrc =
   ensurePublicPath(image) ??
   findFirstExisting(`images/${entry.slug}`, ['webp', 'jpg', 'jpeg', 'png']) ??
   findFallbackUnknown(gender);
+
+const isGrecPantheon = (yamlEntity?.pantheon ?? entry.data.pantheon) === 'grec';
+const natureLabel = getNatureLabel(yamlEntity, entry.data);
 
 function findFirstExisting(baseWithoutExt: string, extensions: string[]): string | null {
   // try exact casing first
@@ -118,6 +122,31 @@ function ensurePublicPath(relPath: string | undefined): string | null {
   }
   return null;
 }
+
+function getNatureLabel(
+  yamlEntity: ReturnType<typeof getEntityBySlug> | undefined,
+  frontmatter: Record<string, any>,
+): string | null {
+  const fromYamlDisplay = yamlEntity?.display_class;
+  if (fromYamlDisplay) return fromYamlDisplay;
+  const yamlNature = yamlEntity?.nature;
+  if (typeof yamlNature === 'string') return yamlNature;
+  if (yamlNature && typeof yamlNature === 'object') {
+    const { category, subtype } = yamlNature as { category?: string; subtype?: string };
+    if (category && subtype) return `${category} — ${subtype}`;
+    if (category) return category;
+  }
+  const fmDisplay = frontmatter.display_class;
+  if (fmDisplay) return fmDisplay as string;
+  const fmNature = frontmatter.nature;
+  if (typeof fmNature === 'string') return fmNature;
+  if (fmNature && typeof fmNature === 'object') {
+    const { category, subtype } = fmNature as { category?: string; subtype?: string };
+    if (category && subtype) return `${category} — ${subtype}`;
+    if (category) return category;
+  }
+  return null;
+}
 ---
 
 <html lang="fr">
@@ -138,8 +167,11 @@ function ensurePublicPath(relPath: string | undefined): string | null {
       </a>
     </div>
 
-    <h1 class="text-4xl font-bold mb-4">{title}</h1>
-    {role && <p class="text-xl text-gray-600 mb-6">{role}</p>}
+    <div class="text-center">
+      <h1 class={`entity-name text-5xl md:text-6xl font-bold mb-2 ${isGrecPantheon ? 'grec-name' : ''}`}>{title}</h1>
+      {natureLabel && <span class="nature-badge">{natureLabel}</span>}
+      {role && <p class="text-xl text-gray-600 mb-6">{role}</p>}
+    </div>
 
     {videoSrc ? (
       <video 
@@ -160,7 +192,9 @@ function ensurePublicPath(relPath: string | undefined): string | null {
         <img 
           src={imageSrc} 
           alt={title} 
-          class="w-full md:w-[70%] mx-auto rounded-2xl mb-8 shadow"
+          class="w-full md:w-[70%] mx-auto rounded-2xl mb-8 shadow select-none"
+          draggable="false"
+          oncontextmenu="event.preventDefault()"
         />
       )
     )}
@@ -228,3 +262,31 @@ function ensurePublicPath(relPath: string | undefined): string | null {
   <Footer />
 </body>
 </html>
+
+<style>
+  @font-face {
+    font-family: 'Dalek';
+    src: url('/fonts/dalek.ttf') format('truetype');
+    font-display: swap;
+  }
+  .grec-name {
+    font-family: 'Dalek', 'Inter', system-ui, sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .entity-name {
+    color: #8b5a2b;
+  }
+  .nature-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    background: #f8f1e7;
+    color: #8b5a2b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 90, 43, 0.25);
+  }
+</style>

@@ -1,22 +1,24 @@
 ---
-title: "Arès"
-role: "Dieu de la guerre brutale, de la violence et de la fureur"
-description: "Incarnation de la force brute et du chaos du combat, Arès est craint autant par les mortels que par les dieux."
-video: "/videos/ares.mp4"
+title: Arès
+role: Dieu de la guerre brutale, de la violence et de la fureur
+description: Incarnation de la force brute et du chaos du combat, Arès est craint
+  autant par les mortels que par les dieux.
+video: /videos/ares.mp4
 parents:
-  - "Zeus"
-  - "Héra"
+- Zeus
+- Héra
 domaines:
-  - "Guerre"
-  - "Violence"
-  - "Sang"
-  - "Conflit"
+- Guerre
+- Violence
+- Sang
+- Conflit
 symboles:
-  - "Lance"
-  - "Bouclier"
-  - "Casque"
-  - "Chien"
-  - "Vautour"
+- Lance
+- Bouclier
+- Casque
+- Chien
+- Vautour
+pantheon: grec
 ---
 
 Arès représente l’aspect le plus primitif et destructeur de la guerre.  

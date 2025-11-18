@@ -49,6 +49,8 @@ export interface GraphNodeCard {
   relationType: RelationType;
   variant?: string;
   sources: RelationSource[];
+  display_class?: string;
+  nature?: string | { category: string; subtype?: string };
 }
 
 export interface GraphSection {
@@ -137,6 +139,8 @@ export function createGenealogieStore(data: GenealogieData): GenealogieStore {
       relationType: relation.type,
       variant: relation.variant,
       sources: relation.source_texts,
+      display_class: (entity as any).display_class,
+      nature: (entity as any).nature,
     }));
   }
 

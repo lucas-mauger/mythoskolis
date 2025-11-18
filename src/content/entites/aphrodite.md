@@ -1,21 +1,23 @@
 ---
-title: "Aphrodite"
-role: "Déesse de l’amour, de la beauté et du désir"
-description: "Née de l’écume des mers selon la tradition la plus ancienne, Aphrodite incarne l’attraction, la sensualité, la séduction et le pouvoir de l’amour."
-video: "/videos/aphrodite.mp4"
+title: Aphrodite
+role: Déesse de l’amour, de la beauté et du désir
+description: Née de l’écume des mers selon la tradition la plus ancienne, Aphrodite
+  incarne l’attraction, la sensualité, la séduction et le pouvoir de l’amour.
+video: /videos/aphrodite.mp4
 parents:
-  - "Ouranos"     # version hésiodique (naissance de l’écume)
+- Ouranos
 domaines:
-  - "Amour"
-  - "Beauté"
-  - "Désir"
-  - "Séduction"
-  - "Harmonie"
+- Amour
+- Beauté
+- Désir
+- Séduction
+- Harmonie
 symboles:
-  - "Colombe"
-  - "Pomme"
-  - "Miroir"
-  - "Ceinture magique"
+- Colombe
+- Pomme
+- Miroir
+- Ceinture magique
+pantheon: grec
 ---
 
 Aphrodite est la personnification du désir amoureux et de l’attraction universelle.  
