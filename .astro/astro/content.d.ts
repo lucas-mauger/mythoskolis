@@ -176,6 +176,13 @@ declare module 'astro:content' {
   collection: "entites";
   data: any
 } & { render(): Render[".md"] };
+"cronos.md": {
+	id: "cronos.md";
+  slug: "cronos";
+  body: string;
+  collection: "entites";
+  data: any
+} & { render(): Render[".md"] };
 "demeter.md": {
 	id: "demeter.md";
   slug: "demeter";
@@ -186,6 +193,13 @@ declare module 'astro:content' {
 "dionysos.md": {
 	id: "dionysos.md";
   slug: "dionysos";
+  body: string;
+  collection: "entites";
+  data: any
+} & { render(): Render[".md"] };
+"gaia.md": {
+	id: "gaia.md";
+  slug: "gaia";
   body: string;
   collection: "entites";
   data: any
@@ -253,6 +267,13 @@ declare module 'astro:content' {
   collection: "entites";
   data: any
 } & { render(): Render[".md"] };
+"ouranos.md": {
+	id: "ouranos.md";
+  slug: "ouranos";
+  body: string;
+  collection: "entites";
+  data: any
+} & { render(): Render[".md"] };
 "persephone.md": {
 	id: "persephone.md";
   slug: "persephone";
@@ -263,6 +284,13 @@ declare module 'astro:content' {
 "poseidon.md": {
 	id: "poseidon.md";
   slug: "poseidon";
+  body: string;
+  collection: "entites";
+  data: any
+} & { render(): Render[".md"] };
+"rhea.md": {
+	id: "rhea.md";
+  slug: "rhea";
   body: string;
   collection: "entites";
   data: any
