@@ -1,0 +1,38 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+
+const entites = await getCollection('entites');
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Entités | Mythoskolis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+    <Header />
+
+    <main class="flex-1 max-w-5xl mx-auto px-4 py-12">
+<h1 class="text-4xl font-bold mb-10">Les entités de la mythologie grecque</h1>
+
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {entites.map((entite) => (
+          <a href={`/entites/${entite.slug}/`} class="block p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition">
+            {entite.data.image && (
+              <img src={entite.data.image} alt={entite.data.title} class="w-full h-40 object-cover rounded-lg mb-3" />
+            )}
+            <h2 class="text-xl font-semibold">{entite.data.title}</h2>
+            {entite.data.role && <p class="text-gray-500 text-sm mt-1">{entite.data.role}</p>}
+          </a>
+        ))}
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

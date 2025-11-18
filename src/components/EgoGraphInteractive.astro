@@ -9,7 +9,7 @@ const clientModule = (await import('./ego-graph-interactive-client.ts?url')) as 
 const clientScriptSrc = clientModule.default;
 ---
 
-<section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 space-y-4">
+<section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-0 space-y-4 overflow-hidden">
   <div class="relative border border-dashed border-indigo-100 rounded-2xl bg-indigo-50/50 overflow-hidden flex justify-center">
     <div
       id={componentId}
@@ -40,7 +40,7 @@ const clientScriptSrc = clientModule.default;
     </div>
   </div>
 
-  <div class="ego-legend">
+  <div class="ego-legend px-4 pb-4">
     <div class="ego-legend-item">
       <span class="legend-dot legend-dot-active"></span>
       <span>Personnage focalisé</span>
@@ -146,17 +146,22 @@ const clientScriptSrc = clientModule.default;
     overscroll-behavior: contain;
     scrollbar-width: none;
     cursor: grab;
+    --fade-size: 2.4rem;
+    background-image: none;
   }
   .ego-quadrant-content.is-dragging {
     cursor: grabbing;
   }
+  .ego-quadrant-content::-webkit-scrollbar {
+    display: none;
+  }
   .ego-quadrant-content::before,
   .ego-quadrant-content::after {
     content: "";
-    position: absolute;
+    position: sticky;
     left: 0;
     right: 0;
-    height: 2.5rem;
+    height: var(--fade-size);
     pointer-events: none;
     opacity: 0;
     transition: opacity 150ms ease;
@@ -175,9 +180,6 @@ const clientScriptSrc = clientModule.default;
   }
   .ego-quadrant-content.has-more-bottom::after {
     opacity: 1;
-  }
-  .ego-quadrant-content::-webkit-scrollbar {
-    display: none;
   }
 
   .ego-link {
