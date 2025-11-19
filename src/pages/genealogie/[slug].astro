@@ -39,10 +39,8 @@ const entityName = yamlEntity?.name ?? entry.data.title;
 
     <main class="flex-1 w-full max-w-4xl lg:max-w-6xl mx-auto px-4 lg:px-6 py-12 space-y-6">
       <div class="flex flex-wrap gap-3 text-sm">
-        <a href="/" class="underline">← Accueil</a>
-        <a href={`/entites/${entry.slug}/`} class="underline text-indigo-600 hover:text-indigo-700">
-          Voir la fiche entité
-        </a>
+        <a href="/" class="badge-link badge-link--neutral badge-link--back">Accueil</a>
+        <a href={`/entites/${entry.slug}/`} class="badge-link badge-link--primary">Voir la fiche entité</a>
       </div>
 
       <div>

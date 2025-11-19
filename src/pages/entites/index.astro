@@ -17,22 +17,47 @@ const entites = await getCollection('entites');
   <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
     <Header />
 
-    <main class="flex-1 max-w-5xl mx-auto px-4 py-12">
-<h1 class="text-4xl font-bold mb-10">Les entités de la mythologie grecque</h1>
+<main class="flex-1 max-w-5xl mx-auto px-4 py-12">
+      <h1 class="text-4xl font-bold mb-10">Les entités de la mythologie grecque</h1>
 
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {entites.map((entite) => (
-          <a href={`/entites/${entite.slug}/`} class="block p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition">
-            {entite.data.image && (
-              <img src={entite.data.image} alt={entite.data.title} class="w-full h-40 object-cover rounded-lg mb-3" />
-            )}
-            <h2 class="text-xl font-semibold">{entite.data.title}</h2>
-            {entite.data.role && <p class="text-gray-500 text-sm mt-1">{entite.data.role}</p>}
+          <a
+            href={`/entites/${entite.slug}/`}
+            class="entite-card flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition"
+          >
+            <div class="flex-1">
+              <h2 class="entite-card-title text-xl font-semibold text-gray-900">{entite.data.title}</h2>
+              {entite.data.role && <p class="entite-card-role text-gray-500 text-sm mt-1">{entite.data.role}</p>}
+            </div>
+            <img
+              src={`/faces/${entite.slug}.webp`}
+              alt={entite.data.title}
+              class="w-20 h-20 rounded-2xl object-cover border border-gray-200 entite-card-image shadow-inner flex-shrink-0 select-none"
+              draggable="false"
+            />
           </a>
         ))}
-      </section>
-    </main>
+</section>
+  </main>
 
-    <Footer />
-  </body>
+  <Footer />
+</body>
 </html>
+
+<style>
+  :global(.theme-dark .entite-card) {
+    background: #0f172a;
+    border-color: rgba(226, 232, 240, 0.5);
+    border-width: 2px !important;
+  }
+  :global(.theme-dark .entite-card-title) {
+    color: #f8fafc;
+  }
+  :global(.theme-dark .entite-card-role) {
+    color: #cbd5e1;
+  }
+  :global(.theme-dark .entite-card-image) {
+    border-color: rgba(148, 163, 184, 0.4);
+  }
+</style>
