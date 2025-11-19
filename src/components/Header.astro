@@ -34,7 +34,7 @@
   </nav>
 
   <aside
-    class="mobile-drawer fixed inset-y-0 right-0 z-40 w-64 bg-white border-l border-gray-200 shadow-lg md:hidden"
+    class="mobile-drawer fixed inset-y-0 z-40 w-64 bg-white border-l border-gray-200 shadow-lg md:hidden hidden"
     aria-hidden="true"
     data-mobile-menu
   >
@@ -105,8 +105,21 @@
 
   const toggleMenu = (open) => {
     if (!mobileMenu) return;
-    mobileMenu.classList.toggle("is-open", open);
-    mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
+    if (open) {
+      mobileMenu.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        mobileMenu.classList.add("is-open");
+      });
+      mobileMenu.setAttribute("aria-hidden", "false");
+    } else {
+      mobileMenu.classList.remove("is-open");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      const handleTransitionEnd = () => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.removeEventListener("transitionend", handleTransitionEnd);
+      };
+      mobileMenu.addEventListener("transitionend", handleTransitionEnd);
+    }
   };
 
   openBtn?.addEventListener("click", () => toggleMenu(true));
@@ -120,11 +133,17 @@
     border-color: rgba(148, 163, 184, 0.35);
   }
   .mobile-drawer {
-    transform: translateX(100%);
-    transition: transform 200ms ease;
+    right: -18rem;
+    transition: right 200ms ease, opacity 200ms ease;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
   }
   .mobile-drawer.is-open {
-    transform: translateX(0);
+    right: 0;
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
   }
   :global(.theme-dark [data-menu-toggle]) {
     background: rgba(30, 41, 59, 0.9);
