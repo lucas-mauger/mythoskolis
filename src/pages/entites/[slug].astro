@@ -167,10 +167,20 @@ function getNatureLabel(
       </a>
     </div>
 
-    <div class="text-center">
-      <h1 class={`entity-name text-5xl md:text-6xl font-bold mb-2 ${isGrecPantheon ? 'grec-name' : ''}`}>{title}</h1>
-      {natureLabel && <span class="nature-badge">{natureLabel}</span>}
-      {role && <p class="text-xl text-gray-600 mb-6">{role}</p>}
+    <div class="text-center space-y-2">
+      <h1 class={`entity-name text-5xl md:text-6xl font-bold ${isGrecPantheon ? 'grec-name' : ''}`}>{title}</h1>
+      <div class="flex flex-wrap items-center justify-center gap-3 text-sm">
+        {natureLabel && <span class="nature-badge">{natureLabel}</span>}
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/90 px-4 py-1.5 text-sm font-semibold text-gray-700 shadow-sm hover:border-gray-300 hover:shadow transition"
+          data-graph-fullscreen-trigger
+        >
+          <span aria-hidden="true">⤢</span>
+          <span>Mode plein écran</span>
+        </button>
+      </div>
+      {role && <p class="text-xl text-gray-600">{role}</p>}
     </div>
 
     {videoSrc ? (
