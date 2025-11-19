@@ -3,5 +3,7 @@ dist/
 .astro/
 .netlify/
 .env
-codex-instructions.md
 public/data/genealogie.json
+codex-instructions.md
+mythoskolis_classification.md
+slug_convention_backend.md
