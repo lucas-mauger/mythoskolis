@@ -14,12 +14,105 @@ import '../styles/global.css';
   <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
     <Header />
 
-    <main class="flex-1 max-w-4xl mx-auto px-4 py-12">
-      <h1 class="text-5xl font-bold mb-6">Mythoskolis</h1>
-      <p class="text-lg leading-relaxed text-gray-700">
-        Un projet personnel pour explorer la mythologie grecque, ses dieux,
-        ses récits et ses liens avec notre imaginaire moderne.
-      </p>
+    <main class="flex-1 max-w-5xl mx-auto px-4 py-12 space-y-12">
+      <section class="rounded-3xl bg-white border border-gray-200 shadow-sm p-8 flex flex-col gap-4">
+        <p class="text-sm font-semibold tracking-[0.2em] text-indigo-600 uppercase">Mythologie vivante</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
+          Mythoskolis — mythes, généalogies et fiches d'entités
+        </h1>
+        <p class="text-lg text-gray-700 max-w-3xl">
+          Parcours les fiches d'entités (dieux, titans, nymphes...) et explore les liens familiaux
+          via un graphe interactif, sourcé sur les traditions antiques.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a
+            class="inline-flex items-center gap-2 rounded-full bg-indigo-600 text-white px-4 py-2 font-semibold shadow hover:bg-indigo-700 transition"
+            href="/entites/"
+          >
+            Explorer les entités
+          </a>
+          <a
+            class="inline-flex items-center gap-2 rounded-full border border-indigo-200 text-indigo-700 px-4 py-2 font-semibold bg-indigo-50 hover:border-indigo-300 transition"
+            href="/genealogie/zeus/"
+          >
+            Voir la généalogie
+          </a>
+        </div>
+      </section>
+
+      <section class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Quelques entités à découvrir</h2>
+          <a href="/entites/" class="text-sm text-indigo-600 hover:text-indigo-700 underline">Voir toutes les entités</a>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {[
+            { name: 'Zeus', slug: 'zeus' },
+            { name: 'Héra', slug: 'hera' },
+            { name: 'Athéna', slug: 'athena' },
+            { name: 'Apollon', slug: 'apollon' },
+            { name: 'Artémis', slug: 'artemis' },
+            { name: 'Hadès', slug: 'hades' },
+          ].map((item) => (
+            <a
+              class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition"
+              href={`/entites/${item.slug}/`}
+            >
+              <div
+                class="h-40 bg-cover bg-center"
+                style={`background-image: url('/faces/${item.slug}.webp');`}
+              ></div>
+              <div class="p-4 flex items-center justify-between">
+                <div>
+                  <p class="text-lg font-semibold text-gray-900 group-hover:text-indigo-700 transition dark:text-gray-50">
+                    {item.name}
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-300">Fiche détaillée</p>
+                </div>
+                <span class="text-indigo-600 font-semibold group-hover:translate-x-1 transition">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="space-y-4 rounded-3xl bg-white border border-gray-200 shadow-sm p-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Généalogie interactive</h2>
+          <a href="/genealogie/zeus/" class="text-sm text-indigo-600 hover:text-indigo-700 underline">Ouvrir</a>
+        </div>
+        <p class="text-gray-700">
+          Visualise les liens parents–fratrie–consorts–enfants, reviens à la fiche d'une entité, et navigue entre générations.
+        </p>
+        <div class="rounded-2xl border border-dashed border-indigo-200 bg-indigo-50/50 p-4 text-sm text-indigo-900">
+          Aperçu : charge un graphe interactif depuis une fiche entité (bouton “Voir la généalogie”) ou via le lien ci-dessus.
+        </div>
+      </section>
+
+      <section class="space-y-4 rounded-3xl bg-white border border-gray-200 shadow-sm p-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Ressources</h2>
+          <a href="/ressources/" class="text-sm text-indigo-600 hover:text-indigo-700 underline">Voir toutes les ressources</a>
+        </div>
+        <p class="text-gray-700">Analyses, fiches pédagogiques et sources antiques pour approfondir.</p>
+        <p class="text-sm text-gray-500 italic">Des ressources supplémentaires arrivent bientôt.</p>
+      </section>
+
+      <section class="space-y-3 rounded-3xl bg-white border border-gray-200 shadow-sm p-8">
+        <h2 class="text-2xl font-semibold">À propos</h2>
+        <p class="text-gray-700">
+          Mythoskolis est un projet personnel en Astro/Decap/Netlify, pensé comme une vitrine culturelle et technique
+          autour des mythes. Tout le contenu est versionné, sourcé, et le graphe généalogique s'appuie sur des données YAML.
+        </p>
+        <div class="flex flex-wrap gap-3 text-sm">
+          <a href="/a-propos/" class="inline-flex items-center rounded-full border border-gray-200 px-3 py-1.5 hover:border-gray-300">
+            En savoir plus
+          </a>
+          <a href="/entites/" class="inline-flex items-center rounded-full border border-gray-200 px-3 py-1.5 hover:border-gray-300">
+            Consulter les fiches
+          </a>
+        </div>
+      </section>
     </main>
 
     <Footer />

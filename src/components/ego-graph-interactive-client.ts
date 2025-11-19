@@ -156,7 +156,11 @@ class EgoGraphController {
         section === "consorts" &&
         this.focusedChildSlug !== null &&
         (graph.consorts ?? []).some((c) => this.store.hasParent(this.focusedChildSlug!, c.entity.slug));
-      const restoreScroll = shouldResetScroll ? 0 : prevScroll;
+      const shouldResetChildren =
+        section === "children" &&
+        this.focusedConsortSlug !== null &&
+        (graph.children ?? []).some((child) => this.store.hasParent(child.entity.slug, this.focusedConsortSlug!));
+      const restoreScroll = shouldResetScroll || shouldResetChildren ? 0 : prevScroll;
       container.innerHTML = "";
       const isMobile = window.matchMedia("(max-width: 640px)").matches;
       const baseColumns = isMobile ? 2 : 3;

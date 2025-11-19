@@ -4,10 +4,204 @@
       Mythoskolis
     </a>
 
-    <ul class="flex items-center gap-6 text-gray-700">
-      <li><a class="hover:text-black" href="/entites/">Entités</a></li>
-      <li><a class="hover:text-black" href="/ressources/">Ressources</a></li>
-      <li><a class="hover:text-black" href="/a-propos/">À propos</a></li>
-    </ul>
+    <div class="flex items-center gap-4 text-gray-700">
+      <button
+        class="md:hidden inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-semibold text-gray-800 shadow-sm transition hover:border-gray-300 order-2 md:order-1"
+        type="button"
+        aria-label="Ouvrir le menu"
+        data-menu-toggle
+      >
+        ☰
+      </button>
+      <ul class="hidden md:flex items-center gap-6 text-gray-700 order-1 md:order-1" data-desktop-links>
+        <li><a class="hover:text-black" href="/entites/">Entités</a></li>
+        <li><a class="hover:text-black" href="/ressources/">Ressources</a></li>
+        <li><a class="hover:text-black" href="/a-propos/">À propos</a></li>
+      </ul>
+      <button
+        id="theme-toggle"
+        class="theme-toggle ml-2 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-semibold text-gray-800 shadow-sm transition hover:border-gray-300 hover:shadow order-1 md:order-2"
+        type="button"
+        aria-label="Basculer thème clair/sombre"
+      >
+        <div class="toggle-track">
+          <div class="toggle-thumb">
+            <span class="toggle-icon" aria-hidden="true"></span>
+          </div>
+        </div>
+      </button>
+    </div>
   </nav>
+
+  <aside
+    class="mobile-drawer fixed inset-y-0 right-0 z-40 w-64 bg-white border-l border-gray-200 shadow-lg md:hidden"
+    aria-hidden="true"
+    data-mobile-menu
+  >
+    <div class="p-4 flex items-center justify-between border-b border-gray-200 rounded-t-3xl bg-white">
+      <p class="text-lg font-semibold text-gray-800">Menu</p>
+      <button
+        class="inline-flex items-center justify-center rounded-full border border-gray-200 px-3 py-1 text-sm font-semibold text-gray-800 hover:bg-gray-50"
+        type="button"
+        aria-label="Fermer le menu"
+        data-menu-close
+      >
+        ✕
+      </button>
+    </div>
+    <ul class="flex flex-col text-gray-700">
+      <li>
+        <a class="block border border-gray-200 bg-white px-4 py-3 text-gray-800 hover:bg-gray-50" href="/entites/">
+          Entités
+        </a>
+      </li>
+      <li>
+        <a class="block border border-gray-200 bg-white px-4 py-3 text-gray-800 hover:bg-gray-50" href="/ressources/">
+          Ressources
+        </a>
+      </li>
+      <li>
+        <a class="block border border-gray-200 bg-white px-4 py-3 text-gray-800 hover:bg-gray-50" href="/a-propos/">
+          À propos
+        </a>
+      </li>
+    </ul>
+  </aside>
 </header>
+
+<script>
+  const THEME_KEY = "mythos-theme";
+  const root = document.documentElement;
+  const btn = document.getElementById("theme-toggle");
+  const thumb = btn?.querySelector(".toggle-thumb");
+  const iconSpan = btn?.querySelector(".toggle-icon");
+
+  const applyTheme = (theme) => {
+    if (theme === "dark") {
+      root.classList.add("theme-dark");
+      thumb?.classList.add("is-dark");
+      iconSpan!.textContent = "🌙";
+    } else {
+      root.classList.remove("theme-dark");
+      thumb?.classList.remove("is-dark");
+      iconSpan!.textContent = "☀️";
+    }
+  };
+
+  const saved = localStorage.getItem(THEME_KEY);
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const initialTheme = saved === "dark" || saved === "light" ? saved : prefersDark ? "dark" : "light";
+  applyTheme(initialTheme);
+
+  btn?.addEventListener("click", () => {
+    const next = root.classList.contains("theme-dark") ? "light" : "dark";
+    localStorage.setItem(THEME_KEY, next);
+    applyTheme(next);
+  });
+
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+  const openBtn = document.querySelector("[data-menu-toggle]");
+  const closeBtn = document.querySelector("[data-menu-close]");
+
+  const toggleMenu = (open) => {
+    if (!mobileMenu) return;
+    mobileMenu.classList.toggle("is-open", open);
+    mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
+  };
+
+  openBtn?.addEventListener("click", () => toggleMenu(true));
+  closeBtn?.addEventListener("click", () => toggleMenu(false));
+</script>
+
+<style>
+  :global(.theme-dark header),
+  :global(.theme-dark [data-mobile-menu]) {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(148, 163, 184, 0.35);
+  }
+  .mobile-drawer {
+    transform: translateX(100%);
+    transition: transform 200ms ease;
+  }
+  .mobile-drawer.is-open {
+    transform: translateX(0);
+  }
+  :global(.theme-dark [data-menu-toggle]) {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: rgba(148, 163, 184, 0.4);
+    color: #e5e7eb;
+  }
+  :global(.theme-dark [data-mobile-menu] a) {
+    background: rgba(30, 41, 59, 0.95) !important;
+    border-color: rgba(148, 163, 184, 0.4) !important;
+    color: #e5e7eb !important;
+  }
+  :global(.theme-dark [data-mobile-menu] a:hover) {
+    background: rgba(56, 65, 86, 0.95) !important;
+  }
+  :global(.theme-dark [data-mobile-menu] .text-gray-800) {
+    color: #e5e7eb;
+  }
+  [data-mobile-menu] ul li:last-child a {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+  :global(.theme-dark [data-mobile-menu] ul li:last-child a) {
+    border-color: rgba(148, 163, 184, 0.4) !important;
+  }
+  :global(.theme-dark a) {
+    color: #e5e7eb;
+  }
+  :global(.theme-dark a:hover) {
+    color: #ffffff;
+  }
+  :global(.theme-dark #theme-toggle) {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: rgba(148, 163, 184, 0.4);
+    color: #e5e7eb;
+  }
+  :global(.theme-dark #theme-toggle:hover) {
+    border-color: rgba(226, 232, 240, 0.6);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+  }
+
+  .theme-toggle {
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 64px;
+    height: 32px;
+    padding: 0;
+  }
+  .toggle-track {
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #fef3c7, #fde68a);
+    position: relative;
+  }
+  .toggle-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    background: #ffffff;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: transform 180ms ease, background 180ms ease;
+  }
+  .toggle-thumb.is-dark {
+    transform: translateX(32px);
+    background: #092981;
+    color: #fef3c7;
+  }
+  .toggle-icon {
+    line-height: 1;
+  }
+  :global(.theme-dark .toggle-track) {
+    background: linear-gradient(90deg, #0f172a, #111827);
+  }
+</style>

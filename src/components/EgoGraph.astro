@@ -15,7 +15,7 @@ function getNatureLabel(node: any): string | null {
 }
 ---
 
-<section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 space-y-8">
+  <section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 space-y-8 ego-detail-card">
   <div class="text-center space-y-2">
     <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Personnage central</p>
     <h2 class="text-3xl font-bold text-gray-900">{central.name}</h2>
@@ -87,5 +87,30 @@ function getNatureLabel(node: any): string | null {
     font-size: 0.8rem;
     font-weight: 600;
     border: 1px solid rgba(139, 90, 43, 0.22);
+  }
+
+  :global(.theme-dark .ego-detail-card) {
+    background: #0f172a;
+    border-color: rgba(148, 163, 184, 0.35);
+    color: #e2e8f0;
+  }
+  :global(.theme-dark .ego-detail-card h2),
+  :global(.theme-dark .ego-detail-card h3) {
+    color: #e5e7eb;
+  }
+  :global(.theme-dark .ego-detail-card a) {
+    color: #a5bdfd;
+  }
+  :global(.theme-dark .ego-detail-card a:hover) {
+    color: #c7d6ff;
+  }
+  :global(.theme-dark .ego-detail-card li),
+  :global(.theme-dark .ego-detail-card p) {
+    color: #cbd5e1;
+  }
+  :global(.theme-dark .ego-detail-card .nature-badge) {
+    background: #3a2f23;
+    color: #f6e7d0;
+    border-color: rgba(246, 231, 208, 0.35);
   }
 </style>

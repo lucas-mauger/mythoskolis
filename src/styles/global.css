@@ -1,3 +1,59 @@
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
+
+/* Thème sombre global (activé via .theme-dark sur :root) */
+:root.theme-dark body {
+  background: #0b1021;
+  color: #e2e8f0;
+}
+
+:root.theme-dark a {
+  color: #a5bdfd;
+}
+:root.theme-dark a:hover {
+  color: #c7d6ff;
+}
+
+:root.theme-dark .prose {
+  color: #cbd5e1;
+}
+:root.theme-dark .prose h1,
+:root.theme-dark .prose h2,
+:root.theme-dark .prose h3,
+:root.theme-dark .prose h4 {
+  color: #e5e7eb;
+}
+:root.theme-dark .prose strong {
+  color: #e2e8f0;
+}
+:root.theme-dark .prose a {
+  color: #a5bdfd;
+}
+:root.theme-dark .prose a:hover {
+  color: #c7d6ff;
+}
+:root.theme-dark .prose li::marker {
+  color: #94a3b8;
+}
+:root.theme-dark .prose blockquote {
+  color: #e5e7eb;
+  border-left-color: rgba(148, 163, 184, 0.5);
+}
+
+:root.theme-dark .bg-white {
+  background-color: #0f172a !important;
+}
+:root.theme-dark .border-gray-200 {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+:root.theme-dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+:root.theme-dark .text-gray-700 {
+  color: #cdd6e0 !important;
+}
+:root.theme-dark .shadow,
+:root.theme-dark .shadow-sm {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
