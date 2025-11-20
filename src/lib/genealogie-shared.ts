@@ -1,7 +1,7 @@
 export type RelationType = "parent" | "child" | "sibling" | "consort";
 
 export interface GenealogieEntity {
-  id: string;
+  id: string; // stable key: <culture>-<slug> recommandé
   name: string;
   slug: string;
   culture: string;
@@ -67,7 +67,9 @@ export interface GraphDisplayData {
 export interface GenealogieStore {
   getAllEntities(): GenealogieEntity[];
   getEntityBySlug(slug: string): GenealogieEntity | undefined;
-  getEgoGraph(slug: string): EgoGraph | undefined;
+  getEntityById(id: string): GenealogieEntity | undefined;
+  getEgoGraphBySlug(slug: string): EgoGraph | undefined;
+  getEgoGraphById(id: string): EgoGraph | undefined;
   getGraphDisplayData(slug: string): GraphDisplayData | undefined;
   hasParent(childSlug: string, parentSlug: string): boolean;
 }
@@ -84,8 +86,7 @@ export function createGenealogieStore(data: GenealogieData): GenealogieStore {
     return { entity, relation };
   }
 
-  function getEgoGraph(slug: string): EgoGraph | undefined {
-    const central = entityBySlug.get(slug);
+  function getEgoGraphFromCentral(central: GenealogieEntity | undefined): EgoGraph | undefined {
     if (!central) {
       return undefined;
     }
@@ -131,6 +132,9 @@ export function createGenealogieStore(data: GenealogieData): GenealogieStore {
     };
   }
 
+  const getEgoGraphBySlug = (slug: string) => getEgoGraphFromCentral(entityBySlug.get(slug));
+  const getEgoGraphById = (id: string) => getEgoGraphFromCentral(entityById.get(id));
+
   function mapRelatedNodes(nodes: RelatedNode[]): GraphNodeCard[] {
     return nodes.map(({ entity, relation }) => ({
       id: entity.id,
@@ -145,7 +149,7 @@ export function createGenealogieStore(data: GenealogieData): GenealogieStore {
   }
 
   function getGraphDisplayData(slug: string): GraphDisplayData | undefined {
-    const graph = getEgoGraph(slug);
+    const graph = getEgoGraphBySlug(slug);
     if (!graph) {
       return undefined;
     }
@@ -164,7 +168,9 @@ export function createGenealogieStore(data: GenealogieData): GenealogieStore {
   return {
     getAllEntities: () => data.entities,
     getEntityBySlug: (slug: string) => entityBySlug.get(slug),
-    getEgoGraph,
+    getEntityById: (id: string) => entityById.get(id),
+    getEgoGraphBySlug,
+    getEgoGraphById,
     getGraphDisplayData,
     hasParent: (childSlug: string, parentSlug: string) => {
       const child = entityBySlug.get(childSlug);

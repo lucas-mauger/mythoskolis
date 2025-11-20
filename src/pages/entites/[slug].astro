@@ -18,10 +18,13 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { title, description, image, role, parents, domaines, symboles, gender } = entry.data;
+const { id: frontId, culture: frontCulture, title, description, image, role, parents, domaines, symboles, gender } =
+  entry.data;
 const { Content } = await entry.render();
 const genealogie = getGraphDisplayData(entry.slug);
 const yamlEntity = getEntityBySlug(entry.slug);
+const entityId = (frontId ?? yamlEntity?.id ?? entry.slug).toString();
+const entityCulture = frontCulture ?? yamlEntity?.culture ?? null;
 
 // Resolve project root from this file (/src/pages/entites/[slug].astro -> up 3 levels)
 const projectRoot = fileURLToPath(new URL('../../..', import.meta.url));
@@ -29,16 +32,27 @@ const publicDir = path.join(projectRoot, 'public');
 
 const videoSrc =
   ensurePublicPath(entry.data.video) ??
-  findFirstExisting(`videos/${entry.slug}`, ['mp4', 'webm', 'ogg', 'ogv']);
+  findFirstExistingFromList(buildMediaBases('videos'), ['mp4', 'webm', 'ogg', 'ogv']);
 const videoType = videoSrc ? getMimeFromExt(videoSrc) : null;
 
 const imageSrc =
   ensurePublicPath(image) ??
-  findFirstExisting(`images/${entry.slug}`, ['webp', 'jpg', 'jpeg', 'png']) ??
+  findFirstExistingFromList(buildMediaBases('images'), ['webp', 'jpg', 'jpeg', 'png']) ??
   findFallbackUnknown(gender);
 
 const isGrecPantheon = (yamlEntity?.pantheon ?? entry.data.pantheon) === 'grec';
 const natureLabel = getNatureLabel(yamlEntity, entry.data);
+
+function buildMediaBases(kind: 'images' | 'videos') {
+  const bases: string[] = [];
+  if (entityCulture) {
+    bases.push(`${kind}/${entityCulture}/${entityId}`);
+    bases.push(`${kind}/${entityCulture}/${entry.slug}`);
+  }
+  bases.push(`${kind}/${entityId}`);
+  bases.push(`${kind}/${entry.slug}`);
+  return bases;
+}
 
 function findFirstExisting(baseWithoutExt: string, extensions: string[]): string | null {
   // try exact casing first
@@ -64,6 +78,14 @@ function findFirstExisting(baseWithoutExt: string, extensions: string[]): string
     const rel = path.join(dir, match);
     const relPath = rel.startsWith('/') ? rel.slice(1) : rel;
     return '/' + relPath.replace(/\\/g, '/');
+  }
+  return null;
+}
+
+function findFirstExistingFromList(bases: string[], extensions: string[]): string | null {
+  for (const base of bases) {
+    const found = findFirstExisting(base, extensions);
+    if (found) return found;
   }
   return null;
 }
