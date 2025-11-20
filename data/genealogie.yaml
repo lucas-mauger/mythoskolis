@@ -1,75 +1,75 @@
 entities:
-  - id: gaia
+  - id: grecque-gaia
     name: Gaïa
     slug: gaia
     culture: grecque
     pantheon: grec
     display_class: Divinité primordiale
     nature: primordial
-  - id: ouranos
+  - id: grecque-ouranos
     name: Ouranos
     slug: ouranos
     culture: grecque
     pantheon: grec
     display_class: Divinité primordiale
     nature: primordial
-  - id: cronos
+  - id: grecque-cronos
     name: Cronos
     slug: cronos
     culture: grecque
     pantheon: grec
     display_class: Titan / Titanide
     nature: titan
-  - id: rhea
+  - id: grecque-rhea
     name: Rhéa
     slug: rhea
     culture: grecque
     pantheon: grec
     display_class: Titan / Titanide
     nature: titan
-  - id: zeus
+  - id: grecque-zeus
     name: Zeus
     slug: zeus
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: hera
+  - id: grecque-hera
     name: Héra
     slug: hera
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: demeter
+  - id: grecque-demeter
     name: Déméter
     slug: demeter
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: hestia
+  - id: grecque-hestia
     name: Hestia
     slug: hestia
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: poseidon
+  - id: grecque-poseidon
     name: Poséidon
     slug: poseidon
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: hades
+  - id: grecque-hades
     name: Hadès
     slug: hades
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: metis
+  - id: grecque-metis
     name: Métis
     slug: metis
     culture: grecque
@@ -78,77 +78,77 @@ entities:
     nature:
       category: divinite_maritime
       subtype: oceanide
-  - id: athena
+  - id: grecque-athena
     name: Athéna
     slug: athena
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: leto
+  - id: grecque-leto
     name: Léto
     slug: leto
     culture: grecque
     pantheon: grec
     display_class: Titan / Titanide
     nature: titan
-  - id: apollon
+  - id: grecque-apollon
     name: Apollon
     slug: apollon
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: artemis
+  - id: grecque-artemis
     name: Artémis
     slug: artemis
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: ares
+  - id: grecque-ares
     name: Arès
     slug: ares
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: hephaistos
+  - id: grecque-hephaistos
     name: Héphaïstos
     slug: hephaistos
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: hermes
+  - id: grecque-hermes
     name: Hermès
     slug: hermes
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: dionysos
+  - id: grecque-dionysos
     name: Dionysos
     slug: dionysos
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: persephone
+  - id: grecque-persephone
     name: Perséphone
     slug: persephone
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: hebe
+  - id: grecque-hebe
     name: Hébé
     slug: hebe
     culture: grecque
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
-  - id: maia
+  - id: grecque-maia
     name: Maia
     slug: maia
     culture: grecque
@@ -157,7 +157,7 @@ entities:
     nature:
       category: nymphe
       subtype: pleiade
-  - id: semele
+  - id: grecque-semele
     name: Sémélé
     slug: semele
     culture: grecque
@@ -165,405 +165,405 @@ entities:
     display_class: Héros / Demi-dieu
     nature: heros
 relations:
-  - source_id: gaia
-    target_id: ouranos
+  - source_id: grecque-gaia
+    target_id: grecque-ouranos
     type: consort
     source_texts: []
-  - source_id: gaia
-    target_id: cronos
+  - source_id: grecque-gaia
+    target_id: grecque-cronos
     type: parent
     source_texts: []
-  - source_id: ouranos
-    target_id: cronos
+  - source_id: grecque-ouranos
+    target_id: grecque-cronos
     type: parent
     source_texts: []
-  - source_id: gaia
-    target_id: rhea
+  - source_id: grecque-gaia
+    target_id: grecque-rhea
     type: parent
     source_texts: []
-  - source_id: ouranos
-    target_id: rhea
+  - source_id: grecque-ouranos
+    target_id: grecque-rhea
     type: parent
     source_texts: []
-  - source_id: cronos
-    target_id: zeus
+  - source_id: grecque-cronos
+    target_id: grecque-zeus
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: rhea
-    target_id: zeus
+  - source_id: grecque-rhea
+    target_id: grecque-zeus
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: cronos
-    target_id: hera
+  - source_id: grecque-cronos
+    target_id: grecque-hera
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: rhea
-    target_id: hera
+  - source_id: grecque-rhea
+    target_id: grecque-hera
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: cronos
-    target_id: rhea
+  - source_id: grecque-cronos
+    target_id: grecque-rhea
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: zeus
-    target_id: hera
+  - source_id: grecque-zeus
+    target_id: grecque-hera
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
-  - source_id: zeus
-    target_id: hera
+  - source_id: grecque-zeus
+    target_id: grecque-hera
     type: consort
     source_texts:
       - author: Pausanias
         work: Description de la Grèce
         note: Livre II
-  - source_id: cronos
-    target_id: demeter
+  - source_id: grecque-cronos
+    target_id: grecque-demeter
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: rhea
-    target_id: demeter
+  - source_id: grecque-rhea
+    target_id: grecque-demeter
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: cronos
-    target_id: hestia
+  - source_id: grecque-cronos
+    target_id: grecque-hestia
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: rhea
-    target_id: hestia
+  - source_id: grecque-rhea
+    target_id: grecque-hestia
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: cronos
-    target_id: poseidon
+  - source_id: grecque-cronos
+    target_id: grecque-poseidon
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: rhea
-    target_id: poseidon
+  - source_id: grecque-rhea
+    target_id: grecque-poseidon
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: cronos
-    target_id: hades
+  - source_id: grecque-cronos
+    target_id: grecque-hades
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: rhea
-    target_id: hades
+  - source_id: grecque-rhea
+    target_id: grecque-hades
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: cronos
-    target_id: rhea
+  - source_id: grecque-cronos
+    target_id: grecque-rhea
     type: consort
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: zeus
-    target_id: metis
+  - source_id: grecque-zeus
+    target_id: grecque-metis
     type: consort
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.886-900
-  - source_id: zeus
-    target_id: athena
+  - source_id: grecque-zeus
+    target_id: grecque-athena
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.886-900
-  - source_id: metis
-    target_id: athena
+  - source_id: grecque-metis
+    target_id: grecque-athena
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.886-900
-  - source_id: zeus
-    target_id: leto
+  - source_id: grecque-zeus
+    target_id: grecque-leto
     type: consort
     source_texts:
       - author: Callimaque
         work: Hymne à Délos
-  - source_id: leto
-    target_id: apollon
+  - source_id: grecque-leto
+    target_id: grecque-apollon
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.918-920
-  - source_id: zeus
-    target_id: apollon
+  - source_id: grecque-zeus
+    target_id: grecque-apollon
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.918-920
-  - source_id: leto
-    target_id: artemis
+  - source_id: grecque-leto
+    target_id: grecque-artemis
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.918-920
-  - source_id: zeus
-    target_id: artemis
+  - source_id: grecque-zeus
+    target_id: grecque-artemis
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.918-920
-  - source_id: hera
-    target_id: ares
+  - source_id: grecque-hera
+    target_id: grecque-ares
     type: parent
     source_texts:
       - author: Hésiode
         work: Théogonie
-  - source_id: zeus
-    target_id: ares
+  - source_id: grecque-zeus
+    target_id: grecque-ares
     type: parent
     source_texts:
       - author: Homère
         work: Iliade
         note: V, 890-896
-  - source_id: hestia
-    target_id: zeus
+  - source_id: grecque-hestia
+    target_id: grecque-zeus
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hestia
-    target_id: hera
+  - source_id: grecque-hestia
+    target_id: grecque-hera
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hestia
-    target_id: demeter
+  - source_id: grecque-hestia
+    target_id: grecque-demeter
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hestia
-    target_id: hades
+  - source_id: grecque-hestia
+    target_id: grecque-hades
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hestia
-    target_id: poseidon
+  - source_id: grecque-hestia
+    target_id: grecque-poseidon
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: demeter
-    target_id: hera
+  - source_id: grecque-demeter
+    target_id: grecque-hera
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: demeter
-    target_id: hades
+  - source_id: grecque-demeter
+    target_id: grecque-hades
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: demeter
-    target_id: poseidon
+  - source_id: grecque-demeter
+    target_id: grecque-poseidon
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: demeter
-    target_id: zeus
+  - source_id: grecque-demeter
+    target_id: grecque-zeus
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hera
-    target_id: hades
+  - source_id: grecque-hera
+    target_id: grecque-hades
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hera
-    target_id: poseidon
+  - source_id: grecque-hera
+    target_id: grecque-poseidon
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hades
-    target_id: poseidon
+  - source_id: grecque-hades
+    target_id: grecque-poseidon
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hades
-    target_id: zeus
+  - source_id: grecque-hades
+    target_id: grecque-zeus
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: poseidon
-    target_id: zeus
+  - source_id: grecque-poseidon
+    target_id: grecque-zeus
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.453-506
-  - source_id: hera
-    target_id: hephaistos
+  - source_id: grecque-hera
+    target_id: grecque-hephaistos
     type: parent
     variant: Naissance par Héra seule
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.924-926
-  - source_id: zeus
-    target_id: hephaistos
+  - source_id: grecque-zeus
+    target_id: grecque-hephaistos
     type: parent
     variant: Tradition homérique
     source_texts:
       - author: Homère
         work: Iliade
         note: I, 571-600
-  - source_id: apollon
-    target_id: artemis
+  - source_id: grecque-apollon
+    target_id: grecque-artemis
     type: sibling
     source_texts:
       - author: Hésiode
         work: Théogonie
         note: v.918-920
-  - source_id: zeus
-    target_id: maia
+  - source_id: grecque-zeus
+    target_id: grecque-maia
     type: consort
     source_texts:
       - author: Homère
         work: Hymne homérique à Hermès
-  - source_id: maia
-    target_id: hermes
+  - source_id: grecque-maia
+    target_id: grecque-hermes
     type: parent
     source_texts:
       - author: Homère
         work: Hymne homérique à Hermès
-  - source_id: zeus
-    target_id: hermes
+  - source_id: grecque-zeus
+    target_id: grecque-hermes
     type: parent
     source_texts:
       - author: Homère
         work: Hymne homérique à Hermès
-  - source_id: zeus
-    target_id: semele
+  - source_id: grecque-zeus
+    target_id: grecque-semele
     type: consort
     source_texts:
       - author: Apollodore
         work: Bibliothèque
-  - source_id: semele
-    target_id: dionysos
+  - source_id: grecque-semele
+    target_id: grecque-dionysos
     type: parent
     source_texts:
       - author: Euripide
         work: Les Bacchantes
-  - source_id: zeus
-    target_id: dionysos
+  - source_id: grecque-zeus
+    target_id: grecque-dionysos
     type: parent
     source_texts:
       - author: Euripide
         work: Les Bacchantes
-  - source_id: zeus
-    target_id: demeter
+  - source_id: grecque-zeus
+    target_id: grecque-demeter
     type: consort
     source_texts:
       - author: Homère
         work: Hymne homérique à Déméter
-  - source_id: demeter
-    target_id: persephone
+  - source_id: grecque-demeter
+    target_id: grecque-persephone
     type: parent
     source_texts:
       - author: Homère
         work: Hymne homérique à Déméter
-  - source_id: zeus
-    target_id: persephone
+  - source_id: grecque-zeus
+    target_id: grecque-persephone
     type: parent
     source_texts:
       - author: Homère
         work: Hymne homérique à Déméter
-  - source_id: zeus
-    target_id: hebe
+  - source_id: grecque-zeus
+    target_id: grecque-hebe
     type: parent
     source_texts:
       - author: Homère
         work: Iliade
         note: IV, 2
-  - source_id: hera
-    target_id: hebe
+  - source_id: grecque-hera
+    target_id: grecque-hebe
     type: parent
     source_texts:
       - author: Homère
         work: Iliade
         note: IV, 2
   - source_id: aphrodite
-    target_id: hermes
+    target_id: grecque-hermes
     type: consort
     source_texts: []
-  - source_id: ares
+  - source_id: grecque-ares
     target_id: aphrodite
     type: consort
     source_texts:
       - author: Hésiode
         work: Théogonie 933
         note: Préface d'Hyginus
-  - source_id: rhea
-    target_id: ares
+  - source_id: grecque-rhea
+    target_id: grecque-ares
     type: consort
