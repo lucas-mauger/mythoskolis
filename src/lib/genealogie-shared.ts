@@ -149,10 +149,9 @@ export function createGenealogieStore(data: GenealogieData): GenealogieStore {
   }
 
   function getGraphDisplayData(slug: string): GraphDisplayData | undefined {
-    const graph = getEgoGraphBySlug(slug);
-    if (!graph) {
-      return undefined;
-    }
+    const graph =
+      getEgoGraphBySlug(slug) ?? getEgoGraphFromCentral(entityById.get(slug) ?? entityBySlug.get(slug));
+    if (!graph) return undefined;
 
     return {
       central: graph.central,

@@ -47,3 +47,69 @@ collections:
       - { label: "Image principale", name: "image", widget: "image", allow_multiple: false }
       - { label: "Image Open Graph", name: "og_image", widget: "image", required: false, allow_multiple: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "genealogie"
+    label: "Généalogie (graph)"
+    format: "yaml"
+    delete: false
+    files:
+      - name: "relations"
+        label: "Entités & relations"
+        file: "data/genealogie.yaml"
+        editor:
+          preview: false
+        fields:
+          - label: "Entités"
+            name: "entities"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.id}} — {{fields.name}}"
+            fields:
+              - { label: "ID (technique)", name: "id", widget: "string", hint: "<culture>-<slug> (clé stable)", pattern: ["^[a-z0-9-]+$", "Utiliser des minuscules et tirets"], required: true }
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string", hint: "généré automatiquement, non modifiable idéalement" }
+              - label: "Culture"
+                name: "culture"
+                widget: "select"
+                options:
+                  - { label: "Grecque", value: "grecque" }
+                  - { label: "Romaine", value: "romaine" }
+                  - { label: "Égyptienne", value: "egyptienne" }
+                  - { label: "Autre", value: "autre" }
+              - { label: "Panthéon", name: "pantheon", widget: "string", required: false }
+              - { label: "Display class", name: "display_class", widget: "string", required: false }
+              - label: "Nature"
+                name: "nature"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "Catégorie", name: "category", widget: "string", required: false }
+                  - { label: "Sous-type", name: "subtype", widget: "string", required: false }
+
+          - label: "Relations"
+            name: "relations"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.source_id}} → {{fields.target_id}} ({{fields.type}})"
+            fields:
+              - { label: "Source ID", name: "source_id", widget: "string", hint: "id du personnage source" }
+              - { label: "Cible ID", name: "target_id", widget: "string", hint: "id du personnage cible" }
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options:
+                  - { label: "Parent", value: "parent" }
+                  - { label: "Enfant", value: "child" }
+                  - { label: "Fratrie", value: "sibling" }
+                  - { label: "Consort", value: "consort" }
+              - { label: "Variante", name: "variant", widget: "string", required: false }
+              - label: "Sources"
+                name: "source_texts"
+                widget: "list"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "Auteur", name: "author", widget: "string" }
+                  - { label: "Œuvre", name: "work", widget: "string" }
+                  - { label: "Note", name: "note", widget: "string", required: false }
