@@ -113,6 +113,13 @@ entities:
     pantheon: grec
     display_class: Dieu olympien
     nature: olympien
+  - id: aphrodite
+    name: Aphrodite
+    slug: aphrodite
+    culture: grecque
+    pantheon: grec
+    display_class: Dieu olympien
+    nature: olympien
   - id: hephaistos
     name: Héphaïstos
     slug: hephaistos
@@ -557,3 +564,10 @@ relations:
     target_id: hermes
     type: consort
     source_texts: []
+  - source_id: ares
+    target_id: aphrodite
+    type: consort
+    source_texts:
+      - author: Hésiode
+        work: Théogonie 933
+        note: Préface d'Hyginus
