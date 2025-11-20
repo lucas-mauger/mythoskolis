@@ -24,7 +24,7 @@ const { Content } = await entry.render();
 const genealogie = getGraphDisplayData(entry.slug);
 const yamlEntity = getEntityBySlug(entry.slug);
 const entityId = (frontId ?? yamlEntity?.id ?? entry.slug).toString();
-const entityCulture = frontCulture ?? yamlEntity?.culture ?? null;
+const entityCulture = (frontCulture ?? yamlEntity?.culture ?? 'grecque').toString();
 
 // Resolve project root from this file (/src/pages/entites/[slug].astro -> up 3 levels)
 const projectRoot = fileURLToPath(new URL('../../..', import.meta.url));
@@ -45,10 +45,8 @@ const natureLabel = getNatureLabel(yamlEntity, entry.data);
 
 function buildMediaBases(kind: 'images' | 'videos') {
   const bases: string[] = [];
-  if (entityCulture) {
-    bases.push(`${kind}/${entityCulture}/${entityId}`);
-    bases.push(`${kind}/${entityCulture}/${entry.slug}`);
-  }
+  bases.push(`${kind}/${entityCulture}/${entityId}`);
+  bases.push(`${kind}/${entityCulture}/${entry.slug}`);
   bases.push(`${kind}/${entityId}`);
   bases.push(`${kind}/${entry.slug}`);
   return bases;
