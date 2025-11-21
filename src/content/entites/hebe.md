@@ -1,27 +1,22 @@
 ---
 title: Hébé
+culture: grecque
+id: grecque-hebe
+nature:
+  - olympien
 role: Déesse de la jeunesse éternelle et échanson des dieux
 description: >-
   Fille de Zeus et d'Héra, Hébé personnifie la jeunesse resplendissante et
   veille au service du nectar olympien.
-video: /videos/hebe.mp4
-parents:
-  - Zeus
-  - Héra
-domaines:
+domains:
   - Jeunesse
   - Renouveau
   - Banquets divins
   - Mariages sacrés
-symboles:
+symbols:
   - Coupe de nectar
   - Fleurs printanières
   - Voile lumineux
-pantheon: grec
-id: grecque-hebe
-nature:
-  - olympien
-culture: grecque
 ---
 Hébé représente l'énergie et la fraîcheur perpétuelles des dieux. Elle sert le nectar et l'ambroisie lors des banquets et assure à l'Olympe sa vitalité.
 
