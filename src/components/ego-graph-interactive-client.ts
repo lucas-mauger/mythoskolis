@@ -12,6 +12,8 @@ type RelationSection = "parents" | "siblings" | "consorts" | "children";
 interface NodeSpec {
   key: string;
   slug: string;
+  id: string;
+  culture?: string;
   name: string;
   relationLabel: string;
   role: NodeRole;
@@ -113,7 +115,7 @@ class EgoGraphController {
   }
 
   async setCurrentSlug(slug: string) {
-    const graph = this.store.getEgoGraph(slug);
+    const graph = this.store.getEgoGraphBySlug(slug);
     if (!graph) {
       this.showMessage("Pas encore de données pour ce dieu.");
       return;
@@ -138,6 +140,8 @@ class EgoGraphController {
     const centralNode = this.createNode({
       key: `central-${graph.central.id}`,
       slug: graph.central.slug,
+      id: graph.central.id,
+      culture: graph.central.culture,
       name: graph.central.name,
       role: "central",
       relationLabel: RELATION_LABELS.central,
@@ -222,6 +226,8 @@ class EgoGraphController {
         const node = this.createNode({
           key: `${section}-${item.entity.id}`,
           slug: item.entity.slug,
+          id: item.entity.id,
+          culture: item.entity.culture,
           name: item.entity.name,
           role: SECTION_ROLE[section],
           relationLabel: RELATION_LABELS[SECTION_ROLE[section]],
@@ -370,12 +376,13 @@ class EgoGraphController {
       }
     });
 
-    const faceUrl = getFaceUrl(node.slug);
+    const faceLayers = getFaceUrls(node.slug, node.id, node.culture);
     const gradient =
       node.role === "central"
         ? "linear-gradient(140deg, rgba(255,255,255,0.2), rgba(99,102,241,0.25))"
         : "linear-gradient(155deg, rgba(255,255,255,0.12), rgba(79,70,229,0.2))";
-    button.style.backgroundImage = `${gradient}, url(${faceUrl})`;
+    const faceBackground = faceLayers.map((u) => `url(${u})`).join(", ");
+    button.style.backgroundImage = `${gradient}, ${faceBackground}`;
     button.style.backgroundSize = "cover";
     button.style.backgroundPosition = "center";
     button.style.backgroundRepeat = "no-repeat";
@@ -600,7 +607,7 @@ class EgoGraphController {
   }
 
   private computeTargetPositions(targetSlug: string): Map<string, DOMRect> | null {
-    const graph = this.store.getEgoGraph(targetSlug);
+    const graph = this.store.getEgoGraphBySlug(targetSlug);
     if (!graph) return null;
 
     const ghostRoot = document.createElement("div");
@@ -704,8 +711,16 @@ class EgoGraphController {
   }
 }
 
-function getFaceUrl(slug: string): string {
-  return `/faces/${slug}.webp`;
+function getFaceUrls(slug: string, id: string, culture?: string): string[] {
+  const urls: string[] = [];
+  if (culture) {
+    urls.push(`/faces/${culture}/${id}.webp`);
+    urls.push(`/faces/${culture}/${slug}.webp`);
+  }
+  urls.push(`/faces/${id}.webp`);
+  urls.push(`/faces/${slug}.webp`);
+  urls.push(`/faces/unknown_m.webp`);
+  return urls;
 }
 
 function sortSection(nodes: RelatedNode[]): RelatedNode[] {

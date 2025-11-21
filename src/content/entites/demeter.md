@@ -1,24 +1,28 @@
 ---
 title: Déméter
-role: Déesse des moissons, de la fertilité et du cycle des saisons
-description: Protectrice des cultures et mère de Perséphone, Déméter incarne la terre
+role: 'Déesse des moissons, de la fertilité et du cycle des saisons'
+description: >-
+  Protectrice des cultures et mère de Perséphone, Déméter incarne la terre
   nourricière et l’alternance des saisons.
 video: /videos/demeter.mp4
 parents:
-- Cronos
-- Rhéa
+  - Cronos
+  - Rhéa
 domaines:
-- Agriculture
-- Fertilité
-- Moissons
-- Saisons
+  - Agriculture
+  - Fertilité
+  - Moissons
+  - Saisons
 symboles:
-- Épi de blé
-- Torche
-- Corne d’abondance
+  - Épi de blé
+  - Torche
+  - Corne d’abondance
 pantheon: grec
+id: grecque-demeter
+nature:
+  - olympien
+culture: grecque
 ---
-
 Déméter est l’une des divinités les plus essentielles de toute la mythologie grecque.  
 Elle représente la **terre féconde**, l’abondance, le pain, les récoltes et tout ce qui permet à l’humanité de survivre.
 

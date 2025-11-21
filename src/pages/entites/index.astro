@@ -3,8 +3,37 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const entites = await getCollection('entites');
+const publicDir = path.resolve(process.cwd(), 'public');
+
+function findFirstExistingFace(slug: string, id?: string, culture?: string): string {
+  const normalizedCulture = culture?.toString().toLowerCase();
+  const defaultCulture = 'grecque';
+  const normalizedSlug = `${normalizedCulture ?? defaultCulture}-${slug}`;
+  const bases: string[] = [];
+
+  if (normalizedCulture) {
+    if (id) bases.push(`faces/${normalizedCulture}/${id}`);
+    bases.push(`faces/${normalizedCulture}/${normalizedSlug}`);
+    bases.push(`faces/${normalizedCulture}/${slug}`);
+  }
+  if (id) bases.push(`faces/${defaultCulture}/${id}`);
+  bases.push(`faces/${defaultCulture}/${normalizedSlug}`);
+  bases.push(`faces/${defaultCulture}/${slug}`);
+  if (id) bases.push(`faces/${id}`);
+  bases.push(`faces/${slug}`);
+
+  for (const base of bases) {
+    const full = path.join(publicDir, `${base}.webp`);
+    if (fs.existsSync(full)) {
+      return '/' + `${base}.webp`;
+    }
+  }
+  return `/faces/grecque/unknown_m.webp`;
+}
 ---
 
 <html lang="fr">
@@ -21,23 +50,31 @@ const entites = await getCollection('entites');
       <h1 class="text-4xl font-bold mb-10">Les entités de la mythologie grecque</h1>
 
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {entites.map((entite) => (
-          <a
-            href={`/entites/${entite.slug}/`}
-            class="entite-card flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition"
-          >
-            <div class="flex-1">
-              <h2 class="entite-card-title text-xl font-semibold text-gray-900">{entite.data.title}</h2>
-              {entite.data.role && <p class="entite-card-role text-gray-500 text-sm mt-1">{entite.data.role}</p>}
-            </div>
-            <img
-              src={`/faces/${entite.slug}.webp`}
-              alt={entite.data.title}
-              class="w-20 h-20 rounded-2xl object-cover border border-gray-200 entite-card-image shadow-inner flex-shrink-0 select-none"
-              draggable="false"
-            />
-          </a>
-        ))}
+        {entites.map((entite) => {
+          const culture = entite.data.culture;
+          const id = entite.data.id?.toString();
+          const portrait = findFirstExistingFace(entite.slug, id, culture);
+
+          return (
+            <a
+              href={`/entites/${entite.slug}/`}
+              class="entite-card flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition"
+            >
+              <div class="flex-1">
+                <h2 class="entite-card-title text-xl font-semibold text-gray-900">{entite.data.title}</h2>
+                {entite.data.role && <p class="entite-card-role text-gray-500 text-sm mt-1">{entite.data.role}</p>}
+              </div>
+              <img
+                src={portrait}
+                alt={entite.data.title}
+                class="w-20 h-20 rounded-2xl object-cover border border-gray-200 entite-card-image shadow-inner flex-shrink-0 select-none"
+                draggable="false"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='/faces/grecque/unknown_m.webp';"
+              />
+            </a>
+          );
+        })}
 </section>
   </main>
 

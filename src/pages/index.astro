@@ -53,26 +53,34 @@ import '../styles/global.css';
             { name: 'Apollon', slug: 'apollon' },
             { name: 'Artémis', slug: 'artemis' },
             { name: 'Hadès', slug: 'hades' },
-          ].map((item) => (
-            <a
-              class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition"
-              href={`/entites/${item.slug}/`}
-            >
-              <div
-                class="h-40 bg-cover bg-center"
-                style={`background-image: url('/faces/${item.slug}.webp');`}
-              ></div>
-              <div class="p-4 flex items-center justify-between">
-                <div>
-                  <p class="text-lg font-semibold text-gray-900 group-hover:text-indigo-700 transition dark:text-gray-50">
-                    {item.name}
-                  </p>
-                  <p class="text-xs text-gray-500 dark:text-gray-300">Fiche détaillée</p>
+          ].map((item) => {
+            const culture = 'grecque';
+            const face = `/faces/${culture}/${culture}-${item.slug}.webp`;
+            return (
+              <a
+                class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition"
+                href={`/entites/${item.slug}/`}
+              >
+                <img
+                  src={face}
+                  alt={item.name}
+                  class="h-40 w-full object-cover bg-gray-100"
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='/faces/grecque/unknown_m.webp';"
+                  draggable="false"
+                />
+                <div class="p-4 flex items-center justify-between">
+                  <div>
+                    <p class="text-lg font-semibold text-gray-900 group-hover:text-indigo-700 transition dark:text-gray-50">
+                      {item.name}
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">Fiche détaillée</p>
+                  </div>
+                  <span class="text-indigo-600 font-semibold group-hover:translate-x-1 transition">→</span>
                 </div>
-                <span class="text-indigo-600 font-semibold group-hover:translate-x-1 transition">→</span>
-              </div>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
       </section>
 

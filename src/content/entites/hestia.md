@@ -1,24 +1,28 @@
 ---
 title: Hestia
-role: Déesse du foyer, du feu sacré et de l’hospitalité
-description: Gardienne de la flamme domestique et du feu civique, elle assure la cohésion
+role: 'Déesse du foyer, du feu sacré et de l’hospitalité'
+description: >-
+  Gardienne de la flamme domestique et du feu civique, elle assure la cohésion
   des familles et la stabilité des cités.
 video: /videos/hestia.mp4
 parents:
-- Cronos
-- Rhéa
+  - Cronos
+  - Rhéa
 domaines:
-- Foyer
-- Hospitalité
-- Feu sacré
-- Serments
+  - Foyer
+  - Hospitalité
+  - Feu sacré
+  - Serments
 symboles:
-- Flamme
-- Âtre domestique
-- Voile
+  - Flamme
+  - Âtre domestique
+  - Voile
 pantheon: grec
+id: grecque-hestia
+nature:
+  - olympien
+culture: grecque
 ---
-
 Hestia est la première-née des enfants de Cronos et Rhéa — et paradoxalement la dernière à renaître, car Cronos l’avait engloutie avant d’être forcé de la recracher. Cette aînée de l’Olympe choisit pourtant de rester **discrète**, préférant la paix du foyer aux intrigues divines.
 
 ## Rôle et fonctions

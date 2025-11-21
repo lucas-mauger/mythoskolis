@@ -31,5 +31,7 @@ export type {
 
 export const getAllEntities = store.getAllEntities;
 export const getEntityBySlug = store.getEntityBySlug;
-export const getEgoGraph = store.getEgoGraph;
+export const getEgoGraph = store.getEgoGraphBySlug;
 export const getGraphDisplayData = store.getGraphDisplayData;
+export const getEgoGraphById = store.getEgoGraphById;
+export const getEntityById = store.getEntityById;
