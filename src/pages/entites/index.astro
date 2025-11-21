@@ -12,13 +12,16 @@ const publicDir = path.resolve(process.cwd(), 'public');
 function findFirstExistingFace(slug: string, id?: string, culture?: string): string {
   const normalizedCulture = culture?.toString().toLowerCase();
   const defaultCulture = 'grecque';
+  const normalizedSlug = `${normalizedCulture ?? defaultCulture}-${slug}`;
   const bases: string[] = [];
 
   if (normalizedCulture) {
     if (id) bases.push(`faces/${normalizedCulture}/${id}`);
+    bases.push(`faces/${normalizedCulture}/${normalizedSlug}`);
     bases.push(`faces/${normalizedCulture}/${slug}`);
   }
   if (id) bases.push(`faces/${defaultCulture}/${id}`);
+  bases.push(`faces/${defaultCulture}/${normalizedSlug}`);
   bases.push(`faces/${defaultCulture}/${slug}`);
   if (id) bases.push(`faces/${id}`);
   bases.push(`faces/${slug}`);

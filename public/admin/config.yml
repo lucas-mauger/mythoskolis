@@ -21,6 +21,15 @@ collections:
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "ID (normalisé)", name: "id", widget: "string", hint: "<culture>-<slug>", required: true }
+      - label: "Culture"
+        name: "culture"
+        widget: "select"
+        options:
+          - { label: "Grecque", value: "grecque" }
+          - { label: "Romaine", value: "romaine" }
+          - { label: "Égyptienne", value: "egyptienne" }
+          - { label: "Autre", value: "autre" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Rôle / épithète", name: "role", widget: "string", required: false }
       - { label: "Image principale", name: "image", widget: "image", allow_multiple: false }

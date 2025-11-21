@@ -1,25 +1,24 @@
 ---
 title: Perséphone
 role: Reine des Enfers — Déesse du renouveau et des cycles saisonniers
-description: Fille de Déméter et compagne d’Hadès, Perséphone règne sur les Enfers
-  et incarne l’alternance entre mort, renaissance et cyclicité du monde naturel.
+description: Fille de Déméter et compagne d’Hadès, Perséphone règne sur les Enfers et incarne l’alternance entre mort, renaissance et cyclicité du monde naturel.
 video: /videos/persephone.mp4
 parents:
-- Déméter
-- Zeus
+  - Déméter
+  - Zeus
 domaines:
-- Enfers
-- Renaissance
-- Cycles saisonniers
-- Mystères
+  - Enfers
+  - Renaissance
+  - Cycles saisonniers
+  - Mystères
 symboles:
-- Grenade
-- Torche
-- Fleurs printanières
-- Trône infernal
+  - Grenade
+  - Torche
+  - Fleurs printanières
+  - Trône infernal
 pantheon: grec
+id: grecque-persephone
 ---
-
 Perséphone est la reine des Enfers et l’une des divinités les plus importantes du panthéon grec.  
 Déesse double, elle incarne à la fois la jeunesse lumineuse du printemps et la force mystérieuse du monde souterrain.
 

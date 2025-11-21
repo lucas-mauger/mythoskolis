@@ -564,6 +564,3 @@ relations:
       - author: Hésiode
         work: Théogonie 933
         note: Préface d'Hyginus
-  - source_id: grecque-rhea
-    target_id: grecque-ares
-    type: consort

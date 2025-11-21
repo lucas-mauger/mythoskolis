@@ -1,24 +1,24 @@
 ---
-title: "Gaïa"
-slug: "gaia"
-description: "Mère primordiale, source vivante de toute chose."
-role: "Divinité primordiale de la Terre"
+title: Gaïa
+slug: gaia
+description: Mère primordiale, source vivante de toute chose.
+role: Divinité primordiale de la Terre
 pantheon: grec
-display_class: "Divinité primordiale"
+display_class: Divinité primordiale
 nature: primordial
 gender: f
-video: "/videos/gaia.mp4"
-image: "/images/gaia.webp"
+video: /videos/gaia.mp4
+image: /images/gaia.webp
 domaines:
-  - "Terre"
-  - "Fertilité"
-  - "Création"
+  - Terre
+  - Fertilité
+  - Création
 symboles:
-  - "Terre nourricière"
-  - "Montagnes"
-  - "Serpent"
+  - Terre nourricière
+  - Montagnes
+  - Serpent
+id: grecque-gaia
 ---
-
 Gaïa est la Terre vivante, la matrice d’où tout surgit. Des montagnes aux mers, des dieux aux mortels, elle enfante la première génération divine. Elle s’unit à Ouranos, puis à Pontos, donnant naissance aux Titans, aux Cyclopes et aux créatures primordiales.  
 
 Mère protectrice mais redoutable, elle ose se dresser contre Ouranos pour libérer leur descendance, et plus tard aide Zeus à renverser Cronos, afin que l’ordre du monde continue d’évoluer.

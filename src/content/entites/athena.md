@@ -1,25 +1,24 @@
 ---
 title: Athéna
 role: Déesse de la sagesse, de la stratégie guerrière et des artisans
-description: Née de la tête de Zeus, Athéna incarne l’intelligence, la réflexion,
-  la maîtrise technique et la guerre disciplinée.
+description: Née de la tête de Zeus, Athéna incarne l’intelligence, la réflexion, la maîtrise technique et la guerre disciplinée.
 video: /videos/athena.mp4
 parents:
-- Zeus
+  - Zeus
 domaines:
-- Sagesse
-- Stratégie
-- Guerre défensive
-- Artisanat
-- Justice
+  - Sagesse
+  - Stratégie
+  - Guerre défensive
+  - Artisanat
+  - Justice
 symboles:
-- Chouette
-- Égide
-- Olive
-- Casque et lance
+  - Chouette
+  - Égide
+  - Olive
+  - Casque et lance
 pantheon: grec
+id: grecque-athena
 ---
-
 Athéna est l’une des divinités les plus respectées de l’Olympe.  
 Elle représente **la raison**, la stratégie réfléchie et la maîtrise technique, en opposition frontale à la brutalité impulsive d’Arès.
 

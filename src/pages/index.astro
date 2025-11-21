@@ -54,7 +54,8 @@ import '../styles/global.css';
             { name: 'Artémis', slug: 'artemis' },
             { name: 'Hadès', slug: 'hades' },
           ].map((item) => {
-            const face = `/faces/grecque/${item.slug}.webp`;
+            const culture = 'grecque';
+            const face = `/faces/${culture}/${culture}-${item.slug}.webp`;
             return (
               <a
                 class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition"

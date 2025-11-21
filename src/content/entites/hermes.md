@@ -1,26 +1,25 @@
 ---
 title: Hermès
 role: Messager des dieux — Dieu des voyageurs, des échanges, de la ruse et des passages
-description: Rapide et ingénieux, Hermès sert d’intermédiaire entre les mondes. Protecteur
-  des voyageurs, des commerçants et des messagers, il incarne le mouvement et la communication.
+description: Rapide et ingénieux, Hermès sert d’intermédiaire entre les mondes. Protecteur des voyageurs, des commerçants et des messagers, il incarne le mouvement et la communication.
 video: /videos/hermes.mp4
 parents:
-- Zeus
-- Maïa
+  - Zeus
+  - Maïa
 domaines:
-- Messagerie
-- Voyages
-- Commerce
-- Ruse
-- Passage entre les mondes
+  - Messagerie
+  - Voyages
+  - Commerce
+  - Ruse
+  - Passage entre les mondes
 symboles:
-- Caducée
-- Sandales ailées
-- Chapeau ailé (pétase)
-- Tortue
+  - Caducée
+  - Sandales ailées
+  - Chapeau ailé (pétase)
+  - Tortue
 pantheon: grec
+id: grecque-hermes
 ---
-
 Hermès est le dieu du mouvement et de la communication.  
 Messager officiel de Zeus, il circule librement entre l’Olympe, la terre et les Enfers, assurant les échanges entre les mondes.  
 Sa rapidité et son intelligence font de lui un médiateur, un guide et un protecteur pour ceux qui voyagent.
