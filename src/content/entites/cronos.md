@@ -1,26 +1,20 @@
 ---
 title: Cronos
-slug: cronos
-description: 'Ancien souverain des Titans, fils de Gaïa et Ouranos.'
-role: 'Titan, maître du temps et du règne avant les Olympiens'
-pantheon: grec
-display_class: Titan / Titanide
+culture: grecque
+id: grecque-cronos
 nature:
   - titan
 gender: m
-image: /images/cronos.webp
-parents:
-  - Gaïa
-  - Ouranos
-domaines:
+role: 'Titan, maître du temps et du règne avant les Olympiens'
+description: 'Ancien souverain des Titans, fils de Gaïa et Ouranos.'
+domains:
   - Temps
   - Règne primordial
   - Cycle des générations
-symboles:
+symbols:
   - Serpe
   - Sablier
-id: grecque-cronos
-culture: grecque
+display_class: Titan / Titanide
 ---
 Cronos renverse son père Ouranos pour libérer les forces primordiales et devient le souverain de la première génération divine. Redoutant d’être détrôné à son tour, il dévore ses enfants, jusqu’à ce que Zeus — sauvé par Rhéa — mène la révolte des Olympiens.
 

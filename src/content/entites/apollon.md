@@ -1,29 +1,24 @@
 ---
 title: Apollon
+culture: grecque
+id: grecque-apollon
+nature:
+  - olympien
 role: 'Dieu de la lumière, de la musique, des arts et de la divination'
 description: >-
   Fils de Zeus et frère jumeau d’Artémis, Apollon représente l’harmonie,
   l’équilibre, l’inspiration et la clarté.
-video: /videos/apollon.mp4
-parents:
-  - Zeus
-  - Léto
-domaines:
+domains:
   - Lumière
   - Musique
   - Divination
   - Guérison
   - Arts
-symboles:
+symbols:
   - Lyre
   - Laurier
   - Arc d’argent
   - Soleil
-pantheon: grec
-id: grecque-apollon
-nature:
-  - olympien
-culture: grecque
 ---
 Apollon est l’un des dieux les plus polyvalents et les plus vénérés de l’Olympe.  
 Il incarne la **lumière rationnelle**, la **connaissance**, la **musique**, et il préside à l’oracle de Delphes, l’un des sanctuaires les plus sacrés de toute la Grèce antique.

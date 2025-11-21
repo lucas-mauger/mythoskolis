@@ -1,28 +1,23 @@
 ---
 title: Hadès
+culture: grecque
+id: grecque-hades
+nature:
+  - olympien
 role: Dieu des Enfers — Gardien des morts et souverain du royaume souterrain
 description: >-
   Frère de Zeus et Poséidon, Hadès règne sur le monde des morts. Froid,
   impartial et incorruptible, il incarne l’ordre inflexible du destin.
-video: /videos/hades.mp4
-parents:
-  - Cronos
-  - Rhéa
-domaines:
+domains:
   - Enfers
   - Mort
   - Richesses souterraines
   - Destin
-symboles:
+symbols:
   - Casque d’invisibilité
   - Cerbère
   - Cyprès
   - Corne d’abondance
-pantheon: grec
-id: grecque-hades
-nature:
-  - olympien
-culture: grecque
 ---
 Hadès est le maître du **royaume souterrain**, une vaste région où résident les morts.  
 Contrairement à l’image moderne héritée du christianisme, il n’est **pas** un dieu maléfique, mais un souverain juste, strict, et incorruptible.

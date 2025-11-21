@@ -1,190 +1,134 @@
 entities:
-  - id: grecque-japet
-    name: Japet
+  - name: Japet
     slug: japet
     culture: grecque
-    pantheon: grec
-    display_class: "Titan/ Titanide"
-    nature: titan
-  - id: grecque-ocean
-    name: Océan
+    id: grecque-japet
+    display_class: Titan
+  - name: Océan
     slug: ocean
     culture: grecque
-    pantheon: grec
-    display_class: "Titan/ Titanide"
-    nature: titan
-  - id: grecque-gaia
-    name: Gaïa
+    id: grecque-ocean
+    display_class: Titan
+  - name: Gaïa
     slug: gaia
     culture: grecque
-    pantheon: grec
+    id: grecque-gaia
     display_class: Divinité primordiale
-    nature: primordial
-  - id: grecque-ouranos
-    name: Ouranos
+  - name: Ouranos
     slug: ouranos
     culture: grecque
-    pantheon: grec
+    id: grecque-ouranos
     display_class: Divinité primordiale
-    nature: primordial
-  - id: grecque-cronos
-    name: Cronos
+  - name: Cronos
     slug: cronos
     culture: grecque
-    pantheon: grec
-    display_class: Titan / Titanide
-    nature: titan
-  - id: grecque-rhea
-    name: Rhéa
+    id: grecque-cronos
+    display_class: Titan
+  - name: Rhéa
     slug: rhea
     culture: grecque
-    pantheon: grec
-    display_classDéesse: Titan /ne Titanide
-    nature: titan
-  - id: grecque-zeus
-    name: Zeus
+    id: grecque-rhea
+    display_classDéesse: Titanide
+  - name: Zeus
     slug: zeus
     culture: grecque
-    pantheon: grec
+    id: grecque-zeus
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-hera
-    name: Héra
+  - name: Héra
     slug: hera
     culture: grecque
-    pantheon: grec
+    id: grecque-hera
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-demeter
-    name: Déméter
+  - name: Déméter
     slug: demeter
     culture: grecque
-    pantheon: grec
+    id: grecque-demeter
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-hestia
-    name: Hestia
+  - name: Hestia
     slug: hestia
     culture: grecque
-    pantheon: grec
+    id: grecque-hestia
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-poseidon
-    name: Poséidon
+  - name: Poséidon
     slug: poseidon
     culture: grecque
-    pantheon: grec
+    id: grecque-poseidon
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-hades
-    name: Hadès
+  - name: Hadès
     slug: hades
     culture: grecque
-    pantheon: grec
+    id: grecque-hades
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-metis
-    name: Métis
+  - name: Métis
     slug: metis
     culture: grecque
-    pantheon: grec
+    id: grecque-metis
     display_class: Océanide
-    nature:
-      category: divinite_maritime
-      subtype: oceanide
-  - id: grecque-aphrodite
-    name: Aphrodite
+  - name: Aphrodite
     slug: aphrodite
     culture: grecque
-    pantheon: grec
+    id: grecque-aphrodite
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-athena
-    name: Athéna
+  - name: Athéna
     slug: athena
     culture: grecque
-    pantheon: grec
+    id: grecque-athena
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-leto
-    name: Léto
+  - name: Léto
     slug: leto
     culture: grecque
-    pantheon: grec
-    display_class: Titan / Titanide
-    nature: titan
-  - id: grecque-apollon
-    name: Apollon
+    id: grecque-leto
+    display_class: Titanide
+  - name: Apollon
     slug: apollon
     culture: grecque
-    pantheon: grec
+    id: grecque-apollon
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-artemis
-    name: Artémis
+  - name: Artémis
     slug: artemis
     culture: grecque
-    pantheon: grec
+    id: grecque-artemis
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-ares
-    name: Arès
+  - name: Arès
     slug: ares
     culture: grecque
-    pantheon: grec
+    id: grecque-ares
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-hephaistos
-    name: Héphaïstos
+  - name: Héphaïstos
     slug: hephaistos
     culture: grecque
-    pantheon: grec
+    id: grecque-hephaistos
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-hermes
-    name: Hermès
+  - name: Hermès
     slug: hermes
     culture: grecque
-    pantheon: grec
+    id: grecque-hermes
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-dionysos
-    name: Dionysos
+  - name: Dionysos
     slug: dionysos
     culture: grecque
-    pantheon: grec
+    id: grecque-dionysos
     display_class: Dieu olympien
-    nature: olympien
-  - id: grecque-persephone
-    name: Perséphone
+  - name: Perséphone
     slug: persephone
     culture: grecque
-    pantheon: grec
+    id: grecque-persephone
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-hebe
-    name: Hébé
+  - name: Hébé
     slug: hebe
     culture: grecque
-    pantheon: grec
+    id: grecque-hebe
     display_class: Déesse olympienne
-    nature: olympien
-  - id: grecque-maia
-    name: Maia
+  - name: Maia
     slug: maia
     culture: grecque
-    pantheon: grec
+    id: grecque-maia
     display_class: Pléiade
-    nature:
-      category: nymphe
-      subtype: pleiade
-  - id: grecque-semele
-    name: Sémélé
+  - name: Sémélé
     slug: semele
     culture: grecque
-    pantheon: grec
-    display_class: Héros / Demi-dieu
-    nature: heros
+    id: grecque-semele
+    display_class: Héroïne mortelle
 relations:
   - source_id: grecque-gaia
     target_id: grecque-japet
@@ -228,7 +172,7 @@ relations:
     source_texts: []
   - source_id: grecque-gaia
     target_id: grecque-rhea
-    type: parent
+    type: parentHéros / Demi-dieu
     source_texts: []
   - source_id: grecque-ouranos
     target_id: grecque-rhea

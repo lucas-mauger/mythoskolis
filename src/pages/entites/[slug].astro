@@ -18,8 +18,17 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { id: frontId, culture: frontCulture, title, description, image, role, parents, domaines, symboles, gender } =
-  entry.data;
+const {
+  id: frontId,
+  culture: frontCulture,
+  title,
+  description,
+  image,
+  role,
+  domains,
+  symbols,
+  gender,
+} = entry.data;
 const { Content } = await entry.render();
 const genealogie = getGraphDisplayData(entry.slug);
 const yamlEntity = getEntityBySlug(entry.slug);
@@ -40,7 +49,7 @@ const imageSrc =
   findFirstExistingFromList(buildMediaBases('images'), ['webp', 'jpg', 'jpeg', 'png']) ??
   findFallbackUnknown(gender);
 
-const isGrecPantheon = (yamlEntity?.pantheon ?? entry.data.pantheon) === 'grec';
+const isGrecPantheon = (yamlEntity?.culture ?? entry.data.culture ?? entityCulture) === 'grecque';
 const natureLabel = getNatureLabel(yamlEntity, entry.data);
 
 function buildMediaBases(kind: 'images' | 'videos') {
@@ -222,34 +231,27 @@ function getNatureLabel(
       <Content />
     </section>
 
-    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
-      {parents && (
-        <div>
-          <h3 class="font-semibold mb-2">Parents</h3>
-          <ul class="list-disc ml-4">
-            {parents.map((p) => <li>{p}</li>)}
-          </ul>
-        </div>
-      )}
+    {(domains || symbols) && (
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+        {domains && (
+          <div>
+            <h3 class="font-semibold mb-2">Domaines</h3>
+            <ul class="list-disc ml-4">
+              {domains.map((d) => <li>{d}</li>)}
+            </ul>
+          </div>
+        )}
 
-      {domaines && (
-        <div>
-          <h3 class="font-semibold mb-2">Domaines</h3>
-          <ul class="list-disc ml-4">
-            {domaines.map((d) => <li>{d}</li>)}
-          </ul>
-        </div>
-      )}
-
-      {symboles && (
-        <div>
-          <h3 class="font-semibold mb-2">Symboles</h3>
-          <ul class="list-disc ml-4">
-            {symboles.map((s) => <li>{s}</li>)}
-          </ul>
-        </div>
-      )}
-    </div>
+        {symbols && (
+          <div>
+            <h3 class="font-semibold mb-2">Symboles</h3>
+            <ul class="list-disc ml-4">
+              {symbols.map((s) => <li>{s}</li>)}
+            </ul>
+          </div>
+        )}
+      </div>
+    )}
 
     {genealogie ? (
       <section class="mt-12 space-y-4">

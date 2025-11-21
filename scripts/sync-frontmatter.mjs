@@ -10,12 +10,6 @@ const root = resolve(__dirname, "..");
 const yamlPath = resolve(root, "data/genealogie.yaml");
 const entitiesDir = resolve(root, "src/content/entites");
 
-function normalizeNature(value) {
-  if (value === undefined || value === null) return [];
-  if (Array.isArray(value)) return value.map((v) => `${v}`);
-  return [`${value}`];
-}
-
 async function loadYamlEntities() {
   const raw = await readFile(yamlPath, "utf-8");
   const data = loadYaml(raw) ?? {};
@@ -25,7 +19,6 @@ async function loadYamlEntities() {
     map.set(`${entity.id}`, {
       id: `${entity.id}`,
       culture: entity.culture ? `${entity.culture}` : "",
-      nature: normalizeNature(entity.nature),
     });
   }
   return map;
@@ -33,7 +26,7 @@ async function loadYamlEntities() {
 
 function buildFrontmatter(originalData, normalized) {
   const ordered = {};
-  const replaceKeys = ["id", "nature", "culture"];
+  const replaceKeys = ["id", "culture"];
   const seen = new Set();
 
   for (const key of Object.keys(originalData)) {
@@ -72,13 +65,10 @@ async function syncFrontmatter(map) {
       continue;
     }
 
-    const normalizedFm = {
+    const nextData = buildFrontmatter(parsed.data ?? {}, {
       id: source.id,
       culture: source.culture,
-      nature: source.nature,
-    };
-
-    const nextData = buildFrontmatter(parsed.data ?? {}, normalizedFm);
+    });
     const nextContent = matter.stringify(parsed.content, nextData, { lineWidth: 0 });
 
     if (nextContent !== raw) {

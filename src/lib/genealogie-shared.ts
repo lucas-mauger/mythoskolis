@@ -5,7 +5,6 @@ export interface GenealogieEntity {
   name: string;
   slug: string;
   culture: string;
-  pantheon?: string;
   display_class?: string;
   nature?: string | { category: string; subtype?: string };
 }

@@ -1,29 +1,24 @@
 ---
 title: Dionysos
+culture: grecque
+id: grecque-dionysos
+nature:
+  - olympien
 role: 'Dieu du vin, de l’ivresse sacrée, du théâtre et de la transe'
 description: >-
   Divinité de l’extase, de la libération des contraintes et des forces vitales,
   Dionysos incarne la joie débridée autant que la folie.
-video: /videos/dionysos.mp4
-parents:
-  - Zeus
-  - Sémélé
-domaines:
+domains:
   - Vin
   - Fête
   - Théâtre
   - Transe
   - Folie sacrée
-symboles:
+symbols:
   - Thyrse
   - Vigne
   - Panthère
   - Coupe de vin
-pantheon: grec
-id: grecque-dionysos
-nature:
-  - olympien
-culture: grecque
 ---
 Dionysos est le dieu de la **rupture des limites**, celui qui défait les contraintes sociales, psychologiques et même divines.  
 Il représente l’ivresse — non pas seulement l’alcool — mais **l’extase**, le débordement, le « trop plein » vital qui submerge les êtres.

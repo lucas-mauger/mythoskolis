@@ -85,7 +85,6 @@ collections:
                   - { label: "Romaine", value: "romaine" }
                   - { label: "Égyptienne", value: "egyptienne" }
                   - { label: "Autre", value: "autre" }
-              - { label: "Panthéon", name: "pantheon", widget: "string", required: false }
               - { label: "Display class", name: "display_class", widget: "string", required: false }
               - label: "Nature"
                 name: "nature"

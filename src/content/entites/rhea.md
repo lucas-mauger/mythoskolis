@@ -1,26 +1,20 @@
 ---
 title: Rhéa
-slug: rhea
-description: 'Titanide de la fertilité, mère de la plupart des Olympiens.'
-role: 'Titanide, mère des dieux'
-pantheon: grec
-display_class: Titan / Titanide
+culture: grecque
+id: grecque-rhea
 nature:
   - titan
 gender: f
-image: /images/rhea.webp
-parents:
-  - Gaïa
-  - Ouranos
-domaines:
+role: 'Titanide, mère des dieux'
+description: 'Titanide de la fertilité, mère de la plupart des Olympiens.'
+domains:
   - Maternité
   - Fertilité
   - Protection
-symboles:
+symbols:
   - Tambourin
   - Lion
-id: grecque-rhea
-culture: grecque
+display_class: Titan / Titanide
 ---
 Rhéa, sœur-épouse de Cronos, protège sa descendance en cachant Zeus pour éviter qu’il ne soit dévoré. Elle incarne la maternité et la fécondité, et accompagne la transition entre l’ère des Titans et l’ordre olympien. Dans la Théogonie, elle se présente aussi comme une médiatrice : elle ne renverse pas directement Cronos, mais ouvre la voie au renouvellement du cosmos.
 

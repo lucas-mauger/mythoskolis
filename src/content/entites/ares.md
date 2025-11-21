@@ -1,29 +1,24 @@
 ---
 title: Arès
+culture: grecque
+id: grecque-ares
+nature:
+  - olympien
 role: 'Dieu de la guerre brutale, de la violence et de la fureur'
 description: >-
   Incarnation de la force brute et du chaos du combat, Arès est craint autant
   par les mortels que par les dieux.
-video: /videos/ares.mp4
-parents:
-  - Zeus
-  - Héra
-domaines:
+domains:
   - Guerre
   - Violence
   - Sang
   - Conflit
-symboles:
+symbols:
   - Lance
   - Bouclier
   - Casque
   - Chien
   - Vautour
-pantheon: grec
-id: grecque-ares
-nature:
-  - olympien
-culture: grecque
 ---
 Arès représente l’aspect le plus primitif et destructeur de la guerre.  
 Là où Athéna incarne la stratégie, la discipline et la tactique, Arès incarne **la bataille pour la bataille**, la rage aveugle, le fracas du métal, la violence brute.
