@@ -1,8 +1,10 @@
 ---
 title: Aphrodite
 slug: aphrodite
-description: Née de l’écume des mers selon la tradition la plus ancienne, Aphrodite incarne l’attraction, la sensualité, la séduction et le pouvoir de l’amour.
-role: Déesse de l’amour, de la beauté et du désir
+description: >-
+  Née de l’écume des mers selon la tradition la plus ancienne, Aphrodite incarne
+  l’attraction, la sensualité, la séduction et le pouvoir de l’amour.
+role: 'Déesse de l’amour, de la beauté et du désir'
 image: /images/uploads/aphrodite.webp
 video: /videos/aphrodite.mp4
 parents:
@@ -20,6 +22,9 @@ symboles:
   - Ceinture magique
 pantheon: grec
 id: grecque-aphrodite
+nature:
+  - olympien
+culture: grecque
 ---
 Aphrodite est la personnification du désir amoureux et de l’attraction universelle.  
 Puissante et subtile, elle influence les relations divines comme humaines, unissant, séparant et orientant les passions.

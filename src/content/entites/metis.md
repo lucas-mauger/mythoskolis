@@ -1,7 +1,9 @@
 ---
 title: Métis
-role: Océanide de la sagesse rusée, première épouse de Zeus
-description: Fille d'Océan et Téthys, Métis incarne l'intelligence tactique qui aida Zeus pendant la Titanomachie.
+role: 'Océanide de la sagesse rusée, première épouse de Zeus'
+description: >-
+  Fille d'Océan et Téthys, Métis incarne l'intelligence tactique qui aida Zeus
+  pendant la Titanomachie.
 video: /videos/metis.mp4
 parents:
   - Océan
@@ -16,6 +18,9 @@ symboles:
   - Voix conseillère
 pantheon: grec
 id: grecque-metis
+nature:
+  - '[object Object]'
+culture: grecque
 ---
 Métis est la plus avisée des Océanides. Grâce à ses plans subtils, Zeus parvient à libérer ses frères et à vaincre Cronos. Elle devient sa première épouse.
 

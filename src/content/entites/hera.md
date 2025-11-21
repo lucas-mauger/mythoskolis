@@ -1,7 +1,9 @@
 ---
 title: Héra
-role: Reine des dieux — Déesse du mariage, des femmes et de la famille
-description: Épouse de Zeus et protectrice des unions légitimes, Héra incarne l’autorité, la fidélité institutionnelle et la souveraineté féminine.
+role: 'Reine des dieux — Déesse du mariage, des femmes et de la famille'
+description: >-
+  Épouse de Zeus et protectrice des unions légitimes, Héra incarne l’autorité,
+  la fidélité institutionnelle et la souveraineté féminine.
 video: /videos/hera.mp4
 parents:
   - Cronos
@@ -18,6 +20,9 @@ symboles:
   - Lys
 pantheon: grec
 id: grecque-hera
+nature:
+  - olympien
+culture: grecque
 ---
 Héra est la reine de l’Olympe, épouse de Zeus et protectrice du mariage.  
 Fière, majestueuse et souvent inflexible, elle représente les structures familiales et sociales du monde grec.  

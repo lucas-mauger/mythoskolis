@@ -1,11 +1,12 @@
 ---
 title: Ouranos
 slug: ouranos
-description: Le Ciel primordial, époux de Gaïa et père des Titans.
+description: 'Le Ciel primordial, époux de Gaïa et père des Titans.'
 role: Divinité primordiale du Ciel
 pantheon: grec
 display_class: Divinité primordiale
-nature: primordial
+nature:
+  - primordial
 gender: m
 video: /videos/ouranos.mp4
 image: /images/ouranos.webp
@@ -18,6 +19,7 @@ symboles:
   - Éther
   - Serpe (symbole de sa chute)
 id: grecque-ouranos
+culture: grecque
 ---
 Ouranos est le Ciel vivant, couvrant et enserrant la Terre. En s’unissant à Gaïa, il engendre les Titans, dont Cronos et Rhéa, mais aussi les Cyclopes et les Hécatonchires. Désireux de maintenir son pouvoir, il tente d’étouffer sa progéniture, ce qui pousse Gaïa à fomenter sa chute.
 

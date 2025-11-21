@@ -1,4 +1,18 @@
 entities:
+  - id: grecque-japet
+    name: Japet
+    slug: japet
+    culture: grecque
+    pantheon: grec
+    display_class: "Titan/ Titanide"
+    nature: titan
+  - id: grecque-ocean
+    name: Océan
+    slug: ocean
+    culture: grecque
+    pantheon: grec
+    display_class: "Titan/ Titanide"
+    nature: titan
   - id: grecque-gaia
     name: Gaïa
     slug: gaia
@@ -25,7 +39,7 @@ entities:
     slug: rhea
     culture: grecque
     pantheon: grec
-    display_class: Titan / Titanide
+    display_classDéesse: Titan /ne Titanide
     nature: titan
   - id: grecque-zeus
     name: Zeus
@@ -39,21 +53,21 @@ entities:
     slug: hera
     culture: grecque
     pantheon: grec
-    display_class: Dieu olympien
+    display_class: Déesse olympienne
     nature: olympien
   - id: grecque-demeter
     name: Déméter
     slug: demeter
     culture: grecque
     pantheon: grec
-    display_class: Dieu olympien
+    display_class: Déesse olympienne
     nature: olympien
   - id: grecque-hestia
     name: Hestia
     slug: hestia
     culture: grecque
     pantheon: grec
-    display_class: Dieu olympien
+    display_class: Déesse olympienne
     nature: olympien
   - id: grecque-poseidon
     name: Poséidon
@@ -78,12 +92,19 @@ entities:
     nature:
       category: divinite_maritime
       subtype: oceanide
+  - id: grecque-aphrodite
+    name: Aphrodite
+    slug: aphrodite
+    culture: grecque
+    pantheon: grec
+    display_class: Déesse olympienne
+    nature: olympien
   - id: grecque-athena
     name: Athéna
     slug: athena
     culture: grecque
     pantheon: grec
-    display_class: Dieu olympien
+    display_class: Déesse olympienne
     nature: olympien
   - id: grecque-leto
     name: Léto
@@ -104,7 +125,7 @@ entities:
     slug: artemis
     culture: grecque
     pantheon: grec
-    display_class: Dieu olympien
+    display_class: Déesse olympienne
     nature: olympien
   - id: grecque-ares
     name: Arès
@@ -139,14 +160,14 @@ entities:
     slug: persephone
     culture: grecque
     pantheon: grec
-    display_class: Dieu olympien
+    display_class: Déesse olympienne
     nature: olympien
   - id: grecque-hebe
     name: Hébé
     slug: hebe
     culture: grecque
     pantheon: grec
-    display_class: Dieu olympien
+    display_class: Déesse olympienne
     nature: olympien
   - id: grecque-maia
     name: Maia
@@ -165,6 +186,34 @@ entities:
     display_class: Héros / Demi-dieu
     nature: heros
 relations:
+  - source_id: grecque-gaia
+    target_id: grecque-japet
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: v.133-138
+  - source_id: grecque-ouranos
+    target_id: grecque-japet
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: v.133-138
+  - source_id: grecque-ouranos
+    target_id: grecque-ocean
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: v.133-138
+  - source_id: grecque-gaia
+    target_id: grecque-ocean
+    type: parent
+    source_texts:
+      - author: Hésiode
+        work: Théogonie
+        note: v.133-138
   - source_id: grecque-gaia
     target_id: grecque-ouranos
     type: consort

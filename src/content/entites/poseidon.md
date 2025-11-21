@@ -1,7 +1,9 @@
 ---
 title: Poséidon
-role: Dieu des mers, des tremblements de terre et des chevaux
-description: Frère de Zeus et souverain des mers, Poséidon règne sur les océans et exerce un pouvoir redouté sur les forces naturelles.
+role: 'Dieu des mers, des tremblements de terre et des chevaux'
+description: >-
+  Frère de Zeus et souverain des mers, Poséidon règne sur les océans et exerce
+  un pouvoir redouté sur les forces naturelles.
 video: /videos/poseidon.mp4
 parents:
   - Cronos
@@ -18,6 +20,9 @@ symboles:
   - Tsunami
 pantheon: grec
 id: grecque-poseidon
+nature:
+  - olympien
+culture: grecque
 ---
 Poséidon est l’un des trois grands souverains du cosmos, aux côtés de Zeus et Hadès.  
 Il règne sur toutes les étendues maritimes et est responsable des phénomènes géologiques et sismiques.  
